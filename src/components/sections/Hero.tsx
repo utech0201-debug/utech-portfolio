@@ -50,12 +50,12 @@ export default function Hero() {
 
 
             <a
-              href="/Utech-CV.pdf"
-              download
-              className="rounded-xl border border-white/20 bg-white/5 px-7 py-3 text-center font-semibold backdrop-blur transition hover:bg-white/10"
-            >
-              Download CV
-            </a>
+  href="/Utech-CV.pdf"
+  download="Oscar_Dziedzzorm_CV.pdf"
+  className="rounded-xl border border-white/20 bg-white/5 px-7 py-3 text-center font-semibold backdrop-blur transition hover:bg-white/10"
+>
+  Download CV
+</a>
 
           </div>
 
