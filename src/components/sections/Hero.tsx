@@ -41,11 +41,12 @@ export default function Hero() {
 
           <div className="mt-10 flex flex-col justify-center gap-4 sm:flex-row lg:justify-start">
 
-            <button
-              className="rounded-xl bg-blue-600 px-7 py-3 font-semibold shadow-lg shadow-blue-600/30 transition hover:scale-105 hover:bg-blue-500"
-            >
-              View Projects
-            </button>
+            <a
+  href="#projects"
+  className="rounded-xl bg-blue-600 px-7 py-3 font-semibold shadow-lg shadow-blue-600/30 transition hover:scale-105 hover:bg-blue-500"
+>
+  View Projects
+</a>
 
 
             <a
