@@ -9,7 +9,7 @@ return [
 
 {
 url:
-"https://your-domain.vercel.app",
+"https://utech-portfolio.vercel.app",
 
 lastModified:
 new Date(),

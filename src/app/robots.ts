@@ -21,7 +21,7 @@ allow:"/",
 
 
 sitemap:
-"https://your-domain.vercel.app/sitemap.xml",
+"https://utech-portfolio.vercel.app/sitemap.xml",
 
 
 };

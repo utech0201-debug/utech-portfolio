@@ -52,7 +52,7 @@ export const metadata: Metadata = {
 
   metadataBase:
     new URL(
-      "https://your-domain.vercel.app"
+      "https://utech-portfolio.vercel.app"
     ),
 
 
@@ -65,7 +65,7 @@ export const metadata: Metadata = {
       "Building secure, scalable and modern digital experiences.",
 
     url:
-      "https://your-domain.vercel.app",
+      "https://utech-portfolio.vercel.app",
 
     siteName:
       "Utech Portfolio",
