@@ -1,49 +1,32 @@
+"use client";
+
+import ProjectFilter from "./ProjectFilter";
 import { projects } from "@/data/projects";
-import ProjectCard from "./ProjectCard";
 
 export default function ProjectGrid() {
   return (
     <section
       id="projects"
-      className="
-      mx-auto
-      max-w-7xl
-      px-6
-      py-24
-      "
+      className="mx-auto max-w-7xl px-6 py-24"
     >
+      <div className="text-center">
+        <p className="font-semibold uppercase text-blue-500">
+          Projects
+        </p>
 
-      <p className="text-blue-500 font-semibold uppercase">
-        Projects
-      </p>
+        <h2 className="mt-3 text-4xl font-black">
+          Featured Work
+        </h2>
 
-
-      <h2 className="
-        mt-3
-        text-4xl
-        font-bold
-      ">
-        Featured Work
-      </h2>
-
-
-      <div className="
-        mt-12
-        grid
-        gap-8
-        md:grid-cols-2
-        lg:grid-cols-3
-      ">
-
-        {projects.map((project)=>(
-          <ProjectCard
-            key={project.id}
-            project={project}
-          />
-        ))}
-
+        <p className="mx-auto mt-4 max-w-xl text-gray-400">
+          Explore my latest applications, experiments,
+          and development projects.
+        </p>
       </div>
 
+      <div className="mt-12">
+        <ProjectFilter projects={projects} />
+      </div>
     </section>
   );
 }

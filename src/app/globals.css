@@ -1,45 +1,166 @@
 @import "tailwindcss";
 
+/* ==========================================
+   THEME VARIABLES
+========================================== */
+
+:root {
+  --background: #f8fafc;
+  --foreground: #111827;
+
+  --card: rgba(255,255,255,.72);
+  --card-border: rgba(0,0,0,.08);
+
+  --muted: #6b7280;
+
+  --primary: #2563eb;
+}
+
+.dark {
+  --background: #030712;
+  --foreground: #ffffff;
+
+  --card: rgba(17,24,39,.60);
+  --card-border: rgba(255,255,255,.08);
+
+  --muted: #9ca3af;
+
+  --primary: #3b82f6;
+}
+
+/* ==========================================
+   HTML
+========================================== */
+
 html {
   scroll-behavior: smooth;
 }
 
-
-/* Global body styles */
+/* ==========================================
+   BODY
+========================================== */
 
 body {
-  font-family: var(--font-geist-sans), Arial, Helvetica, sans-serif;
+  background: var(--background);
+
+  color: var(--foreground);
+
+  font-family:
+    var(--font-geist-sans),
+    Arial,
+    Helvetica,
+    sans-serif;
+
+  transition:
+    background-color .35s,
+    color .35s;
 }
 
+/* ==========================================
+   HEADINGS
+========================================== */
 
-/* Text selection */
-
-::selection {
-  background: #2563eb;
-  color: white;
+h1,
+h2,
+h3,
+h4,
+h5,
+h6{
+    color:var(--foreground);
 }
 
+/* ==========================================
+   PARAGRAPHS
+========================================== */
 
-/* Custom scrollbar */
+p{
 
-::-webkit-scrollbar {
-  width: 8px;
+color:inherit;
+
 }
 
+/* ==========================================
+   LINKS
+========================================== */
 
-::-webkit-scrollbar-track {
-  background: #050505;
+a{
+
+transition:.25s;
+
 }
 
+/* ==========================================
+   BUTTONS
+========================================== */
 
-::-webkit-scrollbar-thumb {
-  background: #2563eb;
-  border-radius: 10px;
+button{
+
+cursor:pointer;
+
+transition:.25s;
+
 }
 
+/* ==========================================
+   SELECTION
+========================================== */
 
-/* Smooth animations */
+::selection{
 
-* {
-  scroll-margin-top: 80px;
+background:#2563eb;
+
+color:white;
+
+}
+
+/* ==========================================
+   SCROLLBAR
+========================================== */
+
+::-webkit-scrollbar{
+
+width:10px;
+
+}
+
+::-webkit-scrollbar-track{
+
+background:var(--background);
+
+}
+
+::-webkit-scrollbar-thumb{
+
+background:#2563eb;
+
+border-radius:999px;
+
+}
+
+::-webkit-scrollbar-thumb:hover{
+
+background:#1d4ed8;
+
+}
+
+/* ==========================================
+   IMAGE
+========================================== */
+
+img{
+
+user-select:none;
+
+}
+
+/* ==========================================
+   SECTION OFFSET
+========================================== */
+
+*{
+
+scroll-margin-top:90px;
+
+box-sizing:border-box;
+
 }
