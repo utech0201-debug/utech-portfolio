@@ -19,6 +19,7 @@ import GithubProjects from "@/components/github/GithubProjects";
 import GithubActivity from "@/components/github/GithubActivity";
 
 import DeveloperTerminal from "@/components/terminal/DeveloperTerminal";
+import LearningLab from "@/components/learning/LearningLab";
 
 
 
@@ -86,6 +87,10 @@ export default function Home() {
 
         <GithubActivity />
 
+
+
+        {/* Learning Lab */}
+        <LearningLab />
 
 
         {/* Developer Showcase */}
