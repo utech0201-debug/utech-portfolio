@@ -116,6 +116,7 @@ export default function ProfileCard() {
             src="/profile.png"
             alt="Oscar Dziedzorm"
             fill
+            sizes="128px"
             className="object-cover"
           />
         </div>
