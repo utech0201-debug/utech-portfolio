@@ -57,15 +57,12 @@ export default function ProjectCard({
           overflow-hidden
           rounded-3xl
           border
-          border-zinc-200
-          bg-white/80
+          border-white/10
+          bg-white/5
           shadow-xl
           backdrop-blur-xl
           transition
           duration-500
-
-          dark:border-white/10
-          dark:bg-white/5
         "
       >
         {/* Image */}
@@ -119,8 +116,7 @@ export default function ProjectCard({
             className="
               text-2xl
               font-bold
-              text-zinc-900
-              dark:text-white
+              text-white
             "
           >
             {project.title}
@@ -130,8 +126,7 @@ export default function ProjectCard({
             className="
               mt-4
               leading-7
-              text-zinc-600
-              dark:text-gray-400
+              text-gray-400
             "
           >
             {project.description}
@@ -144,15 +139,12 @@ export default function ProjectCard({
                 key={tech}
                 className="
                   rounded-full
-                  bg-blue-100
+                  bg-blue-500/10
                   px-3
                   py-1
                   text-xs
                   font-medium
-                  text-blue-700
-
-                  dark:bg-blue-500/10
-                  dark:text-blue-300
+                  text-blue-300
                 "
               >
                 {tech}
@@ -161,11 +153,10 @@ export default function ProjectCard({
           </div>
 
           {/* Divider */}
-          <div className="my-6 border-t border-zinc-200 dark:border-white/10" />
+          <div className="my-6 border-t border-white/10" />
 
           {/* Buttons */}
           <div className="grid gap-3 md:grid-cols-3">
-
             <Link
               href={`/projects/${project.slug}`}
               className="
@@ -199,22 +190,15 @@ export default function ProjectCard({
                   gap-2
                   rounded-xl
                   border
-                  border-zinc-300
-                  bg-white
+                  border-white/10
+                  bg-white/5
                   px-4
                   py-3
                   font-medium
-                  text-zinc-700
+                  text-white
                   transition
-
                   hover:border-blue-500
-                  hover:text-blue-600
-
-                  dark:border-white/10
-                  dark:bg-white/5
-                  dark:text-white
-                  dark:hover:border-blue-500
-                  dark:hover:text-blue-400
+                  hover:text-blue-400
                 "
               >
                 <SiGithub size={18} />

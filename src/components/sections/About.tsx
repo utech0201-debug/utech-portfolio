@@ -40,18 +40,18 @@ export default function About() {
       <motion.div
         initial={{ opacity: 0 }}
         whileInView={{ opacity: 1 }}
-        transition={{ duration: .7 }}
+        transition={{ duration: 0.7 }}
         viewport={{ once: true }}
       >
-        <p className="font-semibold text-blue-600 dark:text-blue-400">
+        <p className="font-semibold text-blue-400">
           ABOUT ME
         </p>
 
-        <h2 className="mt-2 text-4xl font-black text-zinc-900 dark:text-white">
+        <h2 className="mt-2 text-4xl font-black text-white">
           Building modern digital experiences.
         </h2>
 
-        <p className="mt-6 max-w-3xl text-lg leading-8 text-zinc-600 dark:text-gray-400">
+        <p className="mt-6 max-w-3xl text-lg leading-8 text-gray-400">
           I&apos;m Oscar Dziedzorm, also known as <strong>Utech</strong>,
           a passionate Full-Stack Developer and Cybersecurity enthusiast
           from Ghana.
@@ -73,26 +73,23 @@ export default function About() {
         <motion.div
           initial={{ x: -50, opacity: 0 }}
           whileInView={{ x: 0, opacity: 1 }}
-          transition={{ duration: .7 }}
+          transition={{ duration: 0.7 }}
           viewport={{ once: true }}
           className="
             rounded-3xl
             border
-            border-gray-200
-            bg-white/70
+            border-white/10
+            bg-white/5
             p-8
             shadow-xl
             backdrop-blur-xl
-
-            dark:border-white/10
-            dark:bg-white/5
           "
         >
-          <h3 className="text-2xl font-bold text-zinc-900 dark:text-white">
+          <h3 className="text-2xl font-bold text-white">
             Who I Am
           </h3>
 
-          <p className="mt-5 leading-8 text-zinc-600 dark:text-gray-400">
+          <p className="mt-5 leading-8 text-gray-400">
             I specialize in building secure full-stack applications
             using modern technologies including Next.js,
             React,
@@ -107,7 +104,7 @@ export default function About() {
             networking and application security.
           </p>
 
-          <div className="mt-8 rounded-2xl bg-zinc-900 p-6 text-green-400 dark:bg-black">
+          <div className="mt-8 rounded-2xl bg-black p-6 text-green-400">
             <pre className="text-sm">
 {`const developer = {
   name: "Utech",
@@ -128,7 +125,7 @@ export default function About() {
         <motion.div
           initial={{ x: 50, opacity: 0 }}
           whileInView={{ x: 0, opacity: 1 }}
-          transition={{ duration: .7 }}
+          transition={{ duration: 0.7 }}
           viewport={{ once: true }}
           className="grid gap-6 sm:grid-cols-2"
         >
@@ -145,26 +142,23 @@ export default function About() {
                 className="
                   rounded-3xl
                   border
-                  border-gray-200
-                  bg-white/70
+                  border-white/10
+                  bg-white/5
                   p-8
                   shadow-lg
                   backdrop-blur-xl
-
-                  dark:border-white/10
-                  dark:bg-white/5
                 "
               >
                 <Icon
-                  className="text-blue-600 dark:text-blue-400"
+                  className="text-blue-400"
                   size={34}
                 />
 
-                <h3 className="mt-6 text-4xl font-black text-zinc-900 dark:text-white">
+                <h3 className="mt-6 text-4xl font-black text-white">
                   {item.value}
                 </h3>
 
-                <p className="mt-2 text-zinc-600 dark:text-gray-400">
+                <p className="mt-2 text-gray-400">
                   {item.title}
                 </p>
               </motion.div>
