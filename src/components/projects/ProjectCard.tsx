@@ -1,26 +1,36 @@
 "use client";
 
-import { motion } from "framer-motion";
-import { ExternalLink } from "lucide-react";
-import { SiGithub } from "react-icons/si";
+import Link from "next/link";
 import Image from "next/image";
-import { Project } from "@/types";
+
+import { motion } from "framer-motion";
+import { ExternalLink, ArrowRight } from "lucide-react";
+import { SiGithub } from "react-icons/si";
+
+import { Project } from "@/types/project";
 
 interface Props {
   project: Project;
 }
 
-export default function ProjectCard({ project }: Props) {
+export default function ProjectCard({
+  project,
+}: Props) {
   return (
     <motion.div
       whileHover={{
-        y: -10,
+        y: -8,
         scale: 1.02,
       }}
       transition={{
-        duration: 0.35,
+        duration: 0.3,
       }}
-      className="group relative"
+      className="
+        group
+        relative
+        overflow-hidden
+        rounded-3xl
+      "
     >
       {/* Animated Glow */}
       <div
@@ -97,7 +107,6 @@ export default function ProjectCard({ project }: Props) {
               text-xs
               font-semibold
               text-white
-              shadow-lg
             "
           >
             Featured
@@ -155,7 +164,29 @@ export default function ProjectCard({ project }: Props) {
           <div className="my-6 border-t border-zinc-200 dark:border-white/10" />
 
           {/* Buttons */}
-          <div className="flex gap-4">
+          <div className="grid gap-3 md:grid-cols-3">
+
+            <Link
+              href={`/projects/${project.slug}`}
+              className="
+                flex
+                items-center
+                justify-center
+                gap-2
+                rounded-xl
+                bg-violet-600
+                px-4
+                py-3
+                font-medium
+                text-white
+                transition
+                hover:bg-violet-500
+              "
+            >
+              <ArrowRight size={18} />
+              Details
+            </Link>
+
             {project.github && (
               <a
                 href={project.github}
@@ -163,7 +194,6 @@ export default function ProjectCard({ project }: Props) {
                 rel="noopener noreferrer"
                 className="
                   flex
-                  flex-1
                   items-center
                   justify-center
                   gap-2
@@ -199,7 +229,6 @@ export default function ProjectCard({ project }: Props) {
                 rel="noopener noreferrer"
                 className="
                   flex
-                  flex-1
                   items-center
                   justify-center
                   gap-2
@@ -210,12 +239,11 @@ export default function ProjectCard({ project }: Props) {
                   font-medium
                   text-white
                   transition
-
                   hover:bg-blue-500
                 "
               >
                 <ExternalLink size={18} />
-                Live Demo
+                Demo
               </a>
             )}
           </div>

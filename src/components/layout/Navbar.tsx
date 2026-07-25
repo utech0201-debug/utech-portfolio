@@ -1,7 +1,6 @@
 "use client";
 
 import Link from "next/link";
-import ThemeToggle from "@/components/shared/ThemeToggle";
 import MobileMenu from "./MobileMenu";
 
 
@@ -100,23 +99,6 @@ dark:hover:text-blue-400
 }
 
 
-<ThemeToggle />
-
-</nav>
-
-
-
-<div
-className="
-flex
-items-center
-gap-3
-
-md:hidden
-"
->
-
-<ThemeToggle />
 
 <MobileMenu />
 

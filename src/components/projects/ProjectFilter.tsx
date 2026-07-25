@@ -3,8 +3,7 @@
 import { useMemo, useState } from "react";
 import { Search } from "lucide-react";
 import ProjectCard from "./ProjectCard";
-import { Project } from "@/types";
-
+import { Project } from "@/types/project";
 interface Props {
   projects: Project[];
 }

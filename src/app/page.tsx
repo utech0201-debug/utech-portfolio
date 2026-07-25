@@ -20,7 +20,6 @@ import GithubActivity from "@/components/github/GithubActivity";
 
 import DeveloperTerminal from "@/components/terminal/DeveloperTerminal";
 
-import JsonLd from "@/components/seo/JsonLd";
 
 
 export default function Home() {
@@ -30,8 +29,7 @@ export default function Home() {
 
     <>
 
-      {/* SEO Structured Data */}
-      <JsonLd />
+      
 
 
       {/* Animated Background */}
