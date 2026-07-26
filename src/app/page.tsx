@@ -20,6 +20,7 @@ import GithubActivity from "@/components/github/GithubActivity";
 
 import DeveloperTerminal from "@/components/terminal/DeveloperTerminal";
 import LearningLab from "@/components/learning/LearningLab";
+import LearningBillboard from "@/components/learning/LearningBillboard";
 
 
 
@@ -64,6 +65,10 @@ export default function Home() {
 
 
         <Skills />
+
+
+        {/* Live Learning Billboard */}
+        <LearningBillboard />
 
 
         <Terminal />
