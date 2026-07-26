@@ -1,4 +1,3 @@
-import type { Metadata } from "next";
 import { notFound } from "next/navigation";
 
 import { projects } from "@/data/projects";
@@ -14,105 +13,12 @@ import ProjectFuture from "@/components/projects/details/ProjectFuture";
 import ProjectTimeline from "@/components/projects/timeline/ProjectTimeline";
 import RelatedProjects from "@/components/projects/related/RelatedProjects";
 import ProjectStats from "@/components/projects/stats/ProjectStats";
-
-const SITE_URL = "https://utech-portfolio.vercel.app";
+import { ProjectStructuredData } from "@/components/seo/StructuredData";
 
 interface Props {
   params: Promise<{
     slug: string;
   }>;
-}
-
-/**
- * Generate static project routes from project data.
- */
-export function generateStaticParams() {
-  return projects.map((project) => ({
-    slug: project.slug,
-  }));
-}
-
-/**
- * Generate SEO metadata dynamically for every project.
- */
-export async function generateMetadata({
-  params,
-}: Props): Promise<Metadata> {
-  const { slug } = await params;
-
-  const project = projects.find(
-    (project) => project.slug === slug
-  );
-
-  if (!project) {
-    return {
-      title: "Project Not Found | Utech",
-      description: "The requested project could not be found.",
-    };
-  }
-
-  const projectUrl = `${SITE_URL}/projects/${project.slug}`;
-
-  return {
-    title: project.title,
-
-    description: project.description,
-
-    keywords: [
-      "Utech",
-      "Software Developer",
-      "Full-Stack Developer",
-      "Ghana Developer",
-      ...project.technologies,
-      ...project.features,
-    ],
-
-    authors: [
-      {
-        name: "Utech",
-      },
-    ],
-
-    creator: "Utech",
-
-    alternates: {
-      canonical: projectUrl,
-    },
-
-    openGraph: {
-      title: `${project.title} | Utech`,
-
-      description: project.description,
-
-      url: projectUrl,
-
-      siteName: "Utech Portfolio",
-
-      type: "website",
-
-      images: [
-        {
-          url: project.image,
-          alt: `${project.title} project preview`,
-        },
-      ],
-    },
-
-    twitter: {
-      card: "summary_large_image",
-
-      title: `${project.title} | Utech`,
-
-      description: project.description,
-
-      images: [project.image],
-    },
-
-    robots: {
-      index: true,
-      follow: true,
-    },
-  };
 }
 
 export default async function ProjectPage({
@@ -129,30 +35,47 @@ export default async function ProjectPage({
   }
 
   return (
-    <main className="relative min-h-screen mx-auto max-w-7xl space-y-20 px-6 py-20">
-      <ProjectHero project={project} />
+    <>
+      <ProjectStructuredData
+        siteUrl="https://utech-portfolio.vercel.app"
+        title={project.title}
+        description={project.description}
+        slug={project.slug}
+        image={project.image}
+        technologies={project.technologies}
+        github={project.github}
+        demo={project.demo}
+      />
 
-      <ProjectGallery project={project} />
+      <main className="relative min-h-screen mx-auto max-w-7xl space-y-20 px-6 py-20">
+        <ProjectHero project={project} />
 
-      <ProjectStats project={project} />
+        <ProjectGallery project={project} />
 
-      <ProjectFeatures project={project} />
+        <ProjectStats project={project} />
 
-      <ProjectTechStack project={project} />
+        <ProjectFeatures project={project} />
 
-      <ProjectArchitecture project={project} />
+        <ProjectTechStack project={project} />
 
-      <ProjectChallenges project={project} />
+        <ProjectArchitecture project={project} />
 
-      <ProjectLessons project={project} />
+        <ProjectChallenges project={project} />
 
-      <ProjectFuture project={project} />
+        <ProjectLessons project={project} />
 
-      {project.timeline && (
-        <ProjectTimeline timeline={project.timeline} />
-      )}
+        <ProjectFuture project={project} />
 
-      <RelatedProjects currentSlug={project.slug} />
-    </main>
+        {project.timeline && (
+          <ProjectTimeline
+            timeline={project.timeline}
+          />
+        )}
+
+        <RelatedProjects
+          currentSlug={project.slug}
+        />
+      </main>
+    </>
   );
 }

@@ -1,4 +1,5 @@
 import ScrollProgress from "@/components/shared/ScrollProgress";
+import { PersonStructuredData } from "@/components/seo/StructuredData";
 
 import Navbar from "@/components/layout/Navbar";
 import Footer from "@/components/layout/Footer";
@@ -29,6 +30,9 @@ export default function Home() {
   return (
 
     <>
+      <PersonStructuredData
+        siteUrl="https://utech-portfolio.vercel.app"
+      />
 
       
 
