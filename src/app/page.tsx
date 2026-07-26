@@ -49,8 +49,10 @@ export default function Home() {
 
       <main
         className="
+        relative
+        z-10
         min-h-screen
-        bg-[var(--background)]
+        bg-transparent
         text-[var(--foreground)]
         transition-colors
         duration-300
