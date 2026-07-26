@@ -286,12 +286,45 @@ export const projects: Project[] = [
     ],
 
     stats: {
-      linesOfCode: "N/A",
-      components: 12,
-      files: 35,
+      linesOfCode: "1,274",
+      components: 6,
+      files: 6,
       duration: "Ongoing",
       performance: 100,
       version: "v1.0",
+
+      metrics: [
+        {
+          label: "Source Lines",
+          value: "1,274",
+          icon: "Code2",
+        },
+        {
+          label: "Learning Components",
+          value: "6",
+          icon: "Box",
+        },
+        {
+          label: "Source Files",
+          value: "6",
+          icon: "FileCode2",
+        },
+        {
+          label: "Learning Videos",
+          value: "16",
+          icon: "PlayCircle",
+        },
+        {
+          label: "Video Assets",
+          value: "15",
+          icon: "Video",
+        },
+        {
+          label: "Development",
+          value: "Ongoing",
+          icon: "Clock3",
+        },
+      ],
     },
   },
 ];

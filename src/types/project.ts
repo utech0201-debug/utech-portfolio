@@ -1,3 +1,10 @@
+export type ProjectMetric = {
+  label: string;
+  value: string;
+  icon: string;
+  progress?: number;
+};
+
 export interface Project {
   id: number;
   slug: string;
@@ -23,5 +30,6 @@ export interface Project {
     duration: string;
     performance: number;
     version: string;
+    metrics?: ProjectMetric[];
   };
 }

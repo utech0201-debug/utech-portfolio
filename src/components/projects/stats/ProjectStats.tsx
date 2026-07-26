@@ -9,6 +9,8 @@ import {
   FileCode2,
   Gauge,
   Layers3,
+  PlayCircle,
+  Video,
 } from "lucide-react";
 
 import { Project } from "@/types/project";
@@ -17,39 +19,54 @@ interface Props {
   project: Project;
 }
 
+const iconMap = {
+  Activity,
+  Box,
+  Clock3,
+  Code2,
+  FileCode2,
+  Gauge,
+  Layers3,
+  PlayCircle,
+  Video,
+};
+
 export default function ProjectStats({ project }: Props) {
-  const stats = [
+  const defaultStats = [
     {
       label: "Lines of Code",
       value: project.stats.linesOfCode,
-      icon: Code2,
+      icon: "Code2",
     },
     {
       label: "Components",
       value: project.stats.components.toString(),
-      icon: Box,
+      icon: "Box",
     },
     {
       label: "Files",
       value: project.stats.files.toString(),
-      icon: FileCode2,
+      icon: "FileCode2",
     },
     {
       label: "Development",
       value: project.stats.duration,
-      icon: Clock3,
+      icon: "Clock3",
     },
     {
       label: "Performance",
       value: `${project.stats.performance}%`,
-      icon: Gauge,
+      icon: "Gauge",
+      progress: project.stats.performance,
     },
     {
       label: "Version",
       value: project.stats.version,
-      icon: Layers3,
+      icon: "Layers3",
     },
   ];
+
+  const stats = project.stats.metrics ?? defaultStats;
 
   return (
     <section className="py-10">
@@ -59,20 +76,12 @@ export default function ProjectStats({ project }: Props) {
         viewport={{ once: true, amount: 0.2 }}
         transition={{ duration: 0.5 }}
       >
-        {/* Header */}
         <div className="mb-8 flex items-center gap-3">
           <div
             className="
-              flex
-              h-10
-              w-10
-              items-center
-              justify-center
-              rounded-xl
-              border
-              border-blue-500/20
-              bg-blue-500/10
-              text-blue-400
+              flex h-10 w-10 items-center justify-center
+              rounded-xl border border-blue-500/20
+              bg-blue-500/10 text-blue-400
             "
           >
             <Activity size={20} />
@@ -89,17 +98,10 @@ export default function ProjectStats({ project }: Props) {
           </div>
         </div>
 
-        {/* Metrics */}
-        <div
-          className="
-            grid
-            gap-4
-            sm:grid-cols-2
-            lg:grid-cols-3
-          "
-        >
+        <div className="grid gap-4 sm:grid-cols-2 lg:grid-cols-3">
           {stats.map((stat, index) => {
-            const Icon = stat.icon;
+            const Icon =
+              iconMap[stat.icon as keyof typeof iconMap] ?? Activity;
 
             return (
               <motion.div
@@ -113,33 +115,17 @@ export default function ProjectStats({ project }: Props) {
                 }}
                 whileHover={{ y: -4 }}
                 className="
-                  group
-                  relative
-                  overflow-hidden
-                  rounded-2xl
-                  border
-                  border-white/10
-                  bg-white/[0.04]
-                  p-6
-                  backdrop-blur-xl
-                  transition
-                  hover:border-blue-500/20
-                  hover:bg-white/[0.06]
+                  group relative overflow-hidden rounded-2xl
+                  border border-white/10 bg-white/[0.04]
+                  p-6 backdrop-blur-xl transition
+                  hover:border-blue-500/20 hover:bg-white/[0.06]
                 "
               >
-                {/* Glow */}
                 <div
                   className="
-                    pointer-events-none
-                    absolute
-                    -right-8
-                    -top-8
-                    h-24
-                    w-24
-                    rounded-full
-                    bg-blue-500/10
-                    blur-3xl
-                    transition
+                    pointer-events-none absolute -right-8 -top-8
+                    h-24 w-24 rounded-full bg-blue-500/10
+                    blur-3xl transition
                     group-hover:bg-blue-500/20
                   "
                 />
@@ -148,23 +134,16 @@ export default function ProjectStats({ project }: Props) {
                   <div className="flex items-center justify-between">
                     <div
                       className="
-                        flex
-                        h-10
-                        w-10
-                        items-center
-                        justify-center
-                        rounded-xl
-                        border
-                        border-white/10
-                        bg-black/20
-                        text-blue-400
+                        flex h-10 w-10 items-center justify-center
+                        rounded-xl border border-white/10
+                        bg-black/20 text-blue-400
                       "
                     >
                       <Icon size={19} />
                     </div>
 
                     <span className="text-xs font-medium text-gray-600">
-                      0{index + 1}
+                      {String(index + 1).padStart(2, "0")}
                     </span>
                   </div>
 
@@ -176,14 +155,13 @@ export default function ProjectStats({ project }: Props) {
                     {stat.label}
                   </p>
 
-                  {/* Performance bar */}
-                  {stat.label === "Performance" && (
+                  {stat.progress !== undefined && (
                     <div className="mt-5">
                       <div className="h-1.5 overflow-hidden rounded-full bg-white/10">
                         <motion.div
                           initial={{ width: 0 }}
                           whileInView={{
-                            width: `${project.stats.performance}%`,
+                            width: `${stat.progress}%`,
                           }}
                           viewport={{ once: true }}
                           transition={{
