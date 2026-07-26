@@ -194,9 +194,9 @@ export const projects: Project[] = [
     ],
 
     stats: {
-      linesOfCode: "9,500+",
-      components: 48,
-      files: 95,
+      linesOfCode: "7,307",
+      components: 39,
+      files: 58,
       duration: "2 Months",
       performance: 100,
       version: "v2.0",

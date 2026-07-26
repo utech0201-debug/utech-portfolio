@@ -12,6 +12,7 @@ import ProjectLessons from "@/components/projects/details/ProjectLessons";
 import ProjectFuture from "@/components/projects/details/ProjectFuture";
 import ProjectTimeline from "@/components/projects/timeline/ProjectTimeline";
 import RelatedProjects from "@/components/projects/related/RelatedProjects";
+import ProjectStats from "@/components/projects/stats/ProjectStats";
 
 interface Props {
   params: Promise<{
@@ -37,6 +38,8 @@ export default async function ProjectPage({
       <ProjectHero project={project} />
 
       <ProjectGallery project={project} />
+
+      <ProjectStats project={project} />
 
       <ProjectFeatures project={project} />
 
