@@ -1,4 +1,3 @@
-import Background from "@/components/shared/Background";
 import ScrollProgress from "@/components/shared/ScrollProgress";
 
 import Navbar from "@/components/layout/Navbar";
@@ -32,10 +31,6 @@ export default function Home() {
     <>
 
       
-
-
-      {/* Animated Background */}
-      <Background />
 
 
       {/* Page Progress */}
