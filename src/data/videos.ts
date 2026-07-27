@@ -8,6 +8,7 @@ export type LearningVideo = {
   level: "Beginner" | "Intermediate";
   description: string;
   video: string;
+  poster: string;
 };
 
 export const learningVideos: LearningVideo[] = [
@@ -20,6 +21,7 @@ export const learningVideos: LearningVideo[] = [
     description:
       "A visual introduction to the seven layers of the OSI model and how they work together in network communication.",
     video: "/videos/osi.mp4",
+    poster: "/videos/posters/osi.jpg",
   },
 
   {
@@ -31,6 +33,7 @@ export const learningVideos: LearningVideo[] = [
     description:
       "An introduction to Distributed Denial-of-Service attacks and how overwhelming traffic can affect network availability.",
     video: "/videos/ddos.mp4",
+    poster: "/videos/posters/ddos.jpg",
   },
 
   {
@@ -42,6 +45,7 @@ export const learningVideos: LearningVideo[] = [
     description:
       "A clean visual explanation of the TCP/IP model and the layers responsible for communication across modern networks.",
     video: "/videos/tcp-ip.mp4",
+    poster: "/videos/posters/tcp-ip.jpg",
   },
 
   {
@@ -53,6 +57,7 @@ export const learningVideos: LearningVideo[] = [
     description:
       "An introduction to BGP and its role in exchanging routing information between autonomous systems on the Internet.",
     video: "/videos/bgp.mp4",
+    poster: "/videos/posters/bgp.jpg",
   },
 
   {
@@ -64,6 +69,7 @@ export const learningVideos: LearningVideo[] = [
     description:
       "Understand the relationship between computer viruses and the broader category of malicious software known as malware.",
     video: "/videos/virus-malware.mp4",
+    poster: "/videos/posters/virus-malware.jpg",
   },
 
   {
@@ -75,6 +81,7 @@ export const learningVideos: LearningVideo[] = [
     description:
       "A visual introduction to Generic Routing Encapsulation and how tunneling can carry network traffic across another network.",
     video: "/videos/gre.mp4",
+    poster: "/videos/posters/gre.jpg",
   },
 
   {
@@ -86,6 +93,7 @@ export const learningVideos: LearningVideo[] = [
     description:
       "Compare VPNs and proxies and understand the fundamental differences in how they handle network traffic.",
     video: "/videos/vpn-proxy.mp4",
+    poster: "/videos/posters/vpn-proxy.jpg",
   },
 
   {
@@ -97,6 +105,7 @@ export const learningVideos: LearningVideo[] = [
     description:
       "A visual walkthrough of how routers use static routes to determine where packets should be forwarded.",
     video: "/videos/static-routing.mp4",
+    poster: "/videos/posters/static-routing.jpg",
   },
 
   {
@@ -108,6 +117,7 @@ export const learningVideos: LearningVideo[] = [
     description:
       "Learn the difference between HTTP and HTTPS and why encrypted communication is important on the modern web.",
     video: "/videos/http-https.mp4",
+    poster: "/videos/posters/http-https.jpg",
   },
 
   {
@@ -119,6 +129,7 @@ export const learningVideos: LearningVideo[] = [
     description:
       "Explore common network topologies and how different devices can be arranged within a network.",
     video: "/videos/topology.mp4",
+    poster: "/videos/posters/topology.jpg",
   },
 
   {
@@ -130,6 +141,7 @@ export const learningVideos: LearningVideo[] = [
     description:
       "Understand the difference between bandwidth and network speed using simple visual explanations.",
     video: "/videos/bandwidth-speed.mp4",
+    poster: "/videos/posters/bandwidth-speed.jpg",
   },
 
   {
@@ -141,6 +153,7 @@ export const learningVideos: LearningVideo[] = [
     description:
       "Understand the different roles of CPUs and GPUs and the types of workloads they are designed to handle.",
     video: "/videos/cpu-gpu.mp4",
+    poster: "/videos/posters/cpu-gpu.jpg",
   },
 
   {
@@ -152,6 +165,7 @@ export const learningVideos: LearningVideo[] = [
     description:
       "Learn how DHCP automatically provides devices with network configuration information such as IP addresses.",
     video: "/videos/dhcp.mp4",
+    poster: "/videos/posters/dhcp.jpg",
   },
 
   {
@@ -163,6 +177,7 @@ export const learningVideos: LearningVideo[] = [
     description:
       "Understand spyware and how it relates to the wider category of malicious software.",
     video: "/videos/malware-spyware.mp4",
+    poster: "/videos/posters/malware-spyware.jpg",
   },
 
   {
@@ -174,6 +189,7 @@ export const learningVideos: LearningVideo[] = [
     description:
       "Learn the fundamental differences between RAM and ROM and how each type of memory is used in computing.",
     video: "/videos/ram-rom.mp4",
+    poster: "/videos/posters/ram-rom.jpg",
   },
 ];
 

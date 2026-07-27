@@ -123,6 +123,7 @@ export default function VideoPlayer({
               <video
                 key={video.video}
                 src={video.video}
+                poster={video.poster}
                 controls
                 autoPlay
                 playsInline

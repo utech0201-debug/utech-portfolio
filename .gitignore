@@ -58,3 +58,5 @@ next-env.d.ts
 
 # OS files
 Thumbs.db
+# Local video backups
+videos-original-backup/

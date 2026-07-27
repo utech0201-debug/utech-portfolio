@@ -56,6 +56,7 @@ export default function VideoCard({
         <div className="relative aspect-video overflow-hidden bg-black">
           <video
             src={video.video}
+            poster={video.poster}
             preload="metadata"
             muted
             playsInline
