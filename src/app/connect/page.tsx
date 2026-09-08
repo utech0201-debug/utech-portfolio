@@ -56,7 +56,7 @@ export default async function ConnectPage({ searchParams }: ConnectPageProps) {
           <a href="tel:+233547912435">📞 054 791 2435</a>
           <a href="mailto:utech0201@gmail.com">✉️ utech0201@gmail.com</a>
           <a href="mailto:utech.dev2@gmail.com">✉️ utech.dev2@gmail.com</a>
-          <span>📍 Accra, Ghana</span>
+          <span>📍 HO, VOLTA Ghana</span>
         </div>
 
         <Link className="back-link" href="/">
