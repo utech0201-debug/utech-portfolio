@@ -12,7 +12,7 @@ export default async function ConnectPage({ searchParams }: ConnectPageProps) {
   const phone = params.phone?.replace(/\D/g, "") || "233547912435";
   const portfolio = params.portfolio || "https://utech-portfolio.vercel.app";
   const whatsappMessage = encodeURIComponent(
-    "Hello Oscar, I got your UTECH business card and would like to discuss your services."
+    "Hello UTECH, I got your UTECH business card and would like to discuss your services."
   );
   const whatsappUrl = `https://wa.me/${phone}?text=${whatsappMessage}`;
 
@@ -28,7 +28,7 @@ export default async function ConnectPage({ searchParams }: ConnectPageProps) {
 
         <h1>Let&apos;s connect.</h1>
         <p className="intro">
-          Hi, I&apos;m <strong>Oscar Vordzorgbe Dziedzorm</strong>, a Software Developer.
+          Hi, I&apos;m <strong>UTECH</strong>, a Software Developer.
           Choose an option below to continue.
         </p>
 
