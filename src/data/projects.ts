@@ -26,28 +26,28 @@ export const projects: Project[] = [
     demo: "",
 
     technologies: [
-      "HTML",
-      "CSS",
-      "JavaScript",
-      "Responsive UI",
+      "Next.js",
+      "React",
+      "TypeScript",
+      "Supabase",
+      "Lucide",
       "E-commerce",
-      "GitHub",
     ],
 
     features: [
       "Product Catalog",
       "Gaming & Hardware Sections",
       "Responsive Storefront",
-      "Product Quick View",
+      "Product Discovery",
       "Checkout Experience",
       "Modern Tech-focused UI",
     ],
 
     architecture: [
-      "Component-driven UI",
-      "Responsive Layout System",
-      "Static Product Data",
-      "Client-side Interactions",
+      "Next.js App Router",
+      "React Component Architecture",
+      "Supabase Data Layer",
+      "Responsive UI System",
     ],
 
     challenges: [
