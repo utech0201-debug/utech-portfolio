@@ -1,14 +1,29 @@
-const username = process.env.GITHUB_USERNAME;
-const token = process.env.GITHUB_TOKEN;
+import { getGithubUsername, githubGraphQL } from "@/lib/github-client";
 
-export async function getGithubContributions() {
-  if (!username || !token) {
-    throw new Error("GitHub credentials missing");
-  }
+interface ContributionCalendar {
+  totalContributions: number;
+  weeks: Array<{
+    contributionDays: Array<{
+      date: string;
+      contributionCount: number;
+    }>;
+  }>;
+}
+
+interface GithubContributionResponse {
+  user: {
+    contributionsCollection: {
+      contributionCalendar: ContributionCalendar;
+    } | null;
+  } | null;
+}
+
+export async function getGithubContributions(): Promise<ContributionCalendar> {
+  const username = getGithubUsername();
 
   const query = `
-    query {
-      user(login: "${username}") {
+    query GetContributions($login: String!) {
+      user(login: $login) {
         contributionsCollection {
           contributionCalendar {
             totalContributions
@@ -24,23 +39,11 @@ export async function getGithubContributions() {
     }
   `;
 
-  const response = await fetch("https://api.github.com/graphql", {
-    method: "POST",
-    headers: {
-      Authorization: `Bearer ${token}`,
-      "Content-Type": "application/json",
-    },
-    body: JSON.stringify({ query }),
-    next: { revalidate: 3600 },
+  const data = await githubGraphQL<GithubContributionResponse>(query, {
+    login: username,
   });
 
-  if (!response.ok) {
-    throw new Error("Failed fetching GitHub contributions");
-  }
-
-  const result = await response.json();
-  const calendar =
-    result.data?.user?.contributionsCollection?.contributionCalendar;
+  const calendar = data.user?.contributionsCollection?.contributionCalendar;
 
   if (!calendar) {
     throw new Error("GitHub contribution data unavailable");
