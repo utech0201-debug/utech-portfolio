@@ -14,65 +14,35 @@ const navItems = [
 
 export default function Navbar() {
   return (
-    <header
-      className="
-        fixed
-        top-0
-        z-50
-        w-full
-        border-b
-        border-white/10
-        bg-black/50
-        backdrop-blur-xl
-      "
-    >
-      <div
-        className="
-          mx-auto
-          flex
-          h-16
-          max-w-7xl
-          items-center
-          justify-between
-          px-6
-        "
-      >
-        <Link
-          href="/"
-          className="
-            text-2xl
-            font-black
-            text-blue-500
-            transition
-            hover:text-blue-400
-          "
-        >
-          Utech
+    <header className="fixed top-0 z-50 w-full px-3 pt-3 sm:px-5">
+      <div className="mx-auto flex h-14 max-w-7xl items-center justify-between rounded-2xl border border-white/10 bg-black/55 px-4 shadow-2xl shadow-black/20 backdrop-blur-2xl sm:px-5">
+        <Link href="/" className="group flex items-center gap-2.5">
+          <span className="flex h-8 w-8 items-center justify-center rounded-lg border border-blue-400/30 bg-blue-400/10 font-black text-blue-300">
+            U
+          </span>
+          <span className="text-lg font-black tracking-tight text-white">
+            Utech<span className="text-blue-400">.</span>
+          </span>
         </Link>
 
-        <nav
-          className="
-            hidden
-            items-center
-            gap-8
-            md:flex
-          "
-        >
+        <nav className="hidden items-center gap-1 md:flex">
           {navItems.map((item) => (
             <a
               key={item.name}
               href={item.href}
-              className="
-                text-sm
-                text-gray-300
-                transition
-                hover:text-blue-400
-              "
+              className="rounded-lg px-3 py-2 text-xs font-medium text-gray-400 transition hover:bg-white/5 hover:text-white"
             >
               {item.name}
             </a>
           ))}
         </nav>
+
+        <a
+          href="#contact"
+          className="hidden rounded-lg border border-blue-400/20 bg-blue-400/10 px-3.5 py-2 text-xs font-semibold text-blue-200 transition hover:border-blue-400/40 hover:bg-blue-400/15 sm:inline-flex"
+        >
+          Let&apos;s connect
+        </a>
 
         <div className="md:hidden">
           <MobileMenu />
