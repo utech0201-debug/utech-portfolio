@@ -5,13 +5,131 @@ interface LanguageMap {
   [key: string]: number;
 }
 
-export async function getGithubLanguages() {
-  if (!username) {
-    throw new Error("GITHUB_USERNAME missing");
+interface GraphQLLanguageEdge {
+  size: number;
+  node: {
+    name: string;
+  } | null;
+}
+
+interface GraphQLRepository {
+  languages: {
+    edges: GraphQLLanguageEdge[];
+  };
+}
+
+interface GraphQLResponse {
+  data?: {
+    user?: {
+      repositories: {
+        pageInfo: {
+          hasNextPage: boolean;
+          endCursor: string | null;
+        };
+        nodes: GraphQLRepository[];
+      };
+    } | null;
+  };
+  errors?: Array<{ message: string }>;
+}
+
+const GITHUB_GRAPHQL_URL = "https://api.github.com/graphql";
+
+const query = `
+  query GetRepositoryLanguages($login: String!, $after: String) {
+    user(login: $login) {
+      repositories(
+        first: 100
+        after: $after
+        ownerAffiliations: OWNER
+        privacy: PUBLIC
+        isFork: false
+        orderBy: { field: UPDATED_AT, direction: DESC }
+      ) {
+        pageInfo {
+          hasNextPage
+          endCursor
+        }
+        nodes {
+          languages(first: 10, orderBy: { field: SIZE, direction: DESC }) {
+            edges {
+              size
+              node {
+                name
+              }
+            }
+          }
+        }
+      }
+    }
+  }
+`;
+
+async function fetchLanguagesFromGraphQL(): Promise<LanguageMap> {
+  if (!token) {
+    throw new Error("GITHUB_TOKEN missing");
   }
 
+  const languages: LanguageMap = {};
+  let after: string | null = null;
+
+  do {
+    const response = await fetch(GITHUB_GRAPHQL_URL, {
+      method: "POST",
+      headers: {
+        Accept: "application/json",
+        "Content-Type": "application/json",
+        Authorization: `Bearer ${token}`,
+      },
+      body: JSON.stringify({
+        query,
+        variables: {
+          login: username,
+          after,
+        },
+      }),
+      cache: "force-cache",
+      next: { revalidate: 3600 },
+    });
+
+    if (!response.ok) {
+      throw new Error(`GitHub GraphQL request failed: ${response.status}`);
+    }
+
+    const result = (await response.json()) as GraphQLResponse;
+
+    if (result.errors?.length) {
+      throw new Error(
+        `GitHub GraphQL error: ${result.errors[0].message}`
+      );
+    }
+
+    const repositories = result.data?.user?.repositories;
+
+    if (!repositories) {
+      throw new Error("GitHub user or repository data not found");
+    }
+
+    for (const repository of repositories.nodes) {
+      for (const edge of repository.languages.edges) {
+        if (!edge.node?.name) continue;
+
+        languages[edge.node.name] =
+          (languages[edge.node.name] ?? 0) + edge.size;
+      }
+    }
+
+    after = repositories.pageInfo.hasNextPage
+      ? repositories.pageInfo.endCursor
+      : null;
+  } while (after);
+
+  return languages;
+}
+
+async function fetchLanguagesFromRest(): Promise<LanguageMap> {
   const response = await fetch(
-    `https://api.github.com/users/${username}/repos?per_page=100`,
+    `https://api.github.com/users/${username}/repos?per_page=100&type=owner`,
     {
       headers: {
         Accept: "application/vnd.github+json",
@@ -29,24 +147,28 @@ export async function getGithubLanguages() {
   const languages: LanguageMap = {};
 
   for (const repo of repos) {
-    if (repo.fork) continue;
+    if (repo.fork || !repo.language) continue;
 
-    const languageResponse = await fetch(repo.languages_url, {
-      headers: {
-        Accept: "application/vnd.github+json",
-        ...(token && { Authorization: `Bearer ${token}` }),
-      },
-      next: { revalidate: 3600 },
-    });
+    languages[repo.language] = (languages[repo.language] ?? 0) + 1;
+  }
 
-    if (!languageResponse.ok) continue;
+  return languages;
+}
 
-    const data = await languageResponse.json();
+export async function getGithubLanguages() {
+  if (!username) {
+    throw new Error("GITHUB_USERNAME missing");
+  }
 
-    for (const [language, bytes] of Object.entries(data)) {
-      languages[language] =
-        (languages[language] ?? 0) + Number(bytes);
-    }
+  let languages: LanguageMap;
+
+  try {
+    languages = token
+      ? await fetchLanguagesFromGraphQL()
+      : await fetchLanguagesFromRest();
+  } catch (error) {
+    console.error("Failed to fetch GitHub language data:", error);
+    languages = await fetchLanguagesFromRest();
   }
 
   const total = Object.values(languages).reduce(
