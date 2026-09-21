@@ -2,6 +2,188 @@ import { Project } from "@/types/project";
 
 export const projects: Project[] = [
   {
+    id: 4,
+
+    slug: "utech-store",
+
+    title: "UTECH Store",
+
+    description:
+      "A redesigned UTECH storefront for showcasing technology products, gaming hardware, laptops, peripherals, and digital experiences through a modern commerce interface.",
+
+    overview:
+      "UTECH Store is the e-commerce side of the UTECH vision — a modern storefront built to bring software, hardware, gaming products, and useful technology tools together in one polished experience.",
+
+    image: "/projects/portfolio.png",
+
+    gallery: [
+      "/projects/portfolio.png",
+    ],
+
+    github:
+      "https://github.com/utech0201-debug/utech-e-commerce",
+
+    demo: "",
+
+    technologies: [
+      "HTML",
+      "CSS",
+      "JavaScript",
+      "Responsive UI",
+      "E-commerce",
+      "GitHub",
+    ],
+
+    features: [
+      "Product Catalog",
+      "Gaming & Hardware Sections",
+      "Responsive Storefront",
+      "Product Quick View",
+      "Checkout Experience",
+      "Modern Tech-focused UI",
+    ],
+
+    architecture: [
+      "Component-driven UI",
+      "Responsive Layout System",
+      "Static Product Data",
+      "Client-side Interactions",
+    ],
+
+    challenges: [
+      "Modernizing an existing storefront",
+      "Creating a stronger product browsing experience",
+      "Keeping the interface responsive across devices",
+      "Balancing visual polish with usability",
+    ],
+
+    lessons: [
+      "E-commerce UI architecture",
+      "Responsive design",
+      "Product presentation",
+      "Interactive frontend patterns",
+    ],
+
+    futurePlans: [
+      "Live Product Database",
+      "User Accounts",
+      "Order Tracking",
+      "Mobile Money Integration",
+      "Admin Dashboard",
+      "Production Payments",
+    ],
+
+    timeline: [
+      "Store Audit",
+      "Design Upgrade",
+      "Product UI",
+      "Checkout",
+      "Responsive Polish",
+      "Deployment",
+    ],
+
+    stats: {
+      linesOfCode: "25,000+",
+      components: 30,
+      files: 70,
+      duration: "Ongoing",
+      performance: 95,
+      version: "v2.0",
+    },
+  },
+
+  {
+    id: 5,
+
+    slug: "utech-learning-hub",
+
+    title: "UTECH Learning Hub",
+
+    description:
+      "An interactive learning platform for networking, cybersecurity, Linux, hardware, and practical technology education built as part of the UTECH vision.",
+
+    overview:
+      "UTECH Learning Hub turns the UTECH learning vision into a dedicated digital experience with structured lessons, visual explanations, practical topics, and a growing foundation for a full technology learning platform.",
+
+    image: "/projects/security.png",
+
+    gallery: [
+      "/projects/security.png",
+    ],
+
+    github:
+      "https://github.com/utech0201-debug/utech-official-website",
+
+    demo: "",
+
+    technologies: [
+      "React",
+      "Vite",
+      "JavaScript",
+      "CSS",
+      "Networking",
+      "Cybersecurity",
+    ],
+
+    features: [
+      "Learning Dashboard",
+      "Structured Technology Lessons",
+      "Networking Topics",
+      "Cybersecurity Topics",
+      "Visual Learning Experience",
+      "Progress-focused Interface",
+    ],
+
+    architecture: [
+      "React UI",
+      "Vite Development Stack",
+      "Lesson Data Architecture",
+      "Reusable Learning Components",
+    ],
+
+    challenges: [
+      "Turning technical knowledge into engaging lessons",
+      "Designing a scalable learning experience",
+      "Presenting complex networking concepts visually",
+      "Building a foundation for future courses",
+    ],
+
+    lessons: [
+      "Educational product design",
+      "React component architecture",
+      "Technical content presentation",
+      "Learning experience design",
+    ],
+
+    futurePlans: [
+      "Authentication",
+      "Course Progress Tracking",
+      "Quizzes & Assessments",
+      "Certificates",
+      "More Cybersecurity Labs",
+      "Full UTECH Learning Platform",
+    ],
+
+    timeline: [
+      "Learning Hub Concept",
+      "UI Foundation",
+      "Lesson Architecture",
+      "Networking Content",
+      "Cybersecurity Content",
+      "Continuous Development",
+    ],
+
+    stats: {
+      linesOfCode: "10,000+",
+      components: 35,
+      files: 50,
+      duration: "Ongoing",
+      performance: 95,
+      version: "v1.0",
+    },
+  },
+
+  {
     id: 1,
 
     slug: "online-banking-management-system",
