@@ -11,6 +11,8 @@ import ProjectArchitecture from "@/components/projects/details/ProjectArchitectu
 import ProjectChallenges from "@/components/projects/details/ProjectChallenges";
 import ProjectLessons from "@/components/projects/details/ProjectLessons";
 import ProjectFuture from "@/components/projects/details/ProjectFuture";
+import ProjectSecurity from "@/components/projects/details/ProjectSecurity";
+import ProjectNavigation from "@/components/projects/details/ProjectNavigation";
 import ProjectTimeline from "@/components/projects/timeline/ProjectTimeline";
 import RelatedProjects from "@/components/projects/related/RelatedProjects";
 import ProjectStats from "@/components/projects/stats/ProjectStats";
@@ -131,6 +133,8 @@ export default async function ProjectPage({
 
         <ProjectArchitecture project={project} />
 
+        <ProjectSecurity project={project} />
+
         <ProjectChallenges project={project} />
 
         <ProjectLessons project={project} />
@@ -142,6 +146,8 @@ export default async function ProjectPage({
             timeline={project.timeline}
           />
         )}
+
+        <ProjectNavigation currentSlug={project.slug} />
 
         <RelatedProjects
           currentSlug={project.slug}
