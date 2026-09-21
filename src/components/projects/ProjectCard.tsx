@@ -4,7 +4,7 @@ import Link from "next/link";
 import Image from "next/image";
 
 import { motion } from "framer-motion";
-import { ExternalLink, ArrowRight } from "lucide-react";
+import { ArrowRight, ExternalLink, Radio } from "lucide-react";
 import { SiGithub } from "react-icons/si";
 
 import { Project } from "@/types/project";
@@ -106,9 +106,9 @@ export default function ProjectCard({
               text-white
             "
           >
-            {project.id >= 4 ? "Latest Build" : "Featured"}
+            {project.id <= 5 ? "Latest Build" : "Featured"}
           </span>
-          {project.id >= 4 && (
+          {project.id <= 5 && (
             <span className="absolute right-4 top-4 rounded-full border border-emerald-400/20 bg-emerald-500/10 px-3 py-1 text-[10px] font-semibold uppercase tracking-[0.16em] text-emerald-300 backdrop-blur">
               UTECH
             </span>
