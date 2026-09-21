@@ -34,15 +34,5 @@ export async function getGithubRepositories() {
 
   const repos: GithubRepo[] = await response.json();
 
-  return repos
-    .filter((repo) => !repo.fork)
-    .map((repo) => ({
-      id: repo.id,
-      name: repo.name,
-      description: repo.description ?? "No description available",
-      language: repo.language ?? "Various",
-      stars: repo.stargazers_count,
-      forks: repo.forks_count,
-      url: repo.html_url,
-    }));
+  return repos.filter((repo) => !repo.fork);
 }
