@@ -38,7 +38,7 @@ export function PersonStructuredData({
       data={{
         "@context": "https://schema.org",
         "@type": "Person",
-        name: "Utech",
+        name: "Oscar Dziedzorm (Utech)",
         url: siteUrl,
         jobTitle: "Full-Stack Developer",
         description:
@@ -58,6 +58,7 @@ export function PersonStructuredData({
         ],
         sameAs: [
           "https://github.com/utech0201-debug",
+          "https://www.linkedin.com/in/Utech0201",
         ],
       }}
     />
@@ -88,11 +89,15 @@ export function ProjectStructuredData({
         programmingLanguage: technologies,
         author: {
           "@type": "Person",
-          name: "Utech",
+          name: "Oscar Dziedzorm (Utech)",
           url: siteUrl,
+          sameAs: [
+            "https://github.com/utech0201-debug",
+            "https://www.linkedin.com/in/Utech0201",
+          ],
         },
         ...(github ? { codeRepository: github } : {}),
-        ...(demo ? { installUrl: demo } : {}),
+        ...(demo ? { sameAs: [demo] } : {}),
       }}
     />
   );
