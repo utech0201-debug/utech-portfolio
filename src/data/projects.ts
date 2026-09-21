@@ -397,11 +397,6 @@ export const projects: Project[] = [
           icon: "FileCode2",
         },
         {
-          label: "Source Files",
-          value: "6",
-          icon: "FileCode2",
-        },
-        {
           label: "Learning Videos",
           value: "16",
           icon: "PlayCircle",
