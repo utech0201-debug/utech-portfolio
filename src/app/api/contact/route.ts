@@ -1,76 +1,77 @@
 import { Resend } from "resend";
+import { z } from "zod";
 
 const resend = new Resend(process.env.RESEND_API_KEY);
 
+const contactSchema = z.object({
+  name: z.string().trim().min(2).max(80),
+  email: z.string().trim().email().max(254),
+  message: z.string().trim().min(10).max(5000),
+});
+
+function escapeHtml(value: string) {
+  return value
+    .replaceAll("&", "&amp;")
+    .replaceAll("<", "&lt;")
+    .replaceAll(">", "&gt;")
+    .replaceAll('"', "&quot;")
+    .replaceAll("'", "&#039;");
+}
+
 export async function POST(req: Request) {
   try {
-    const { name, email, message } = await req.json();
+    const body = await req.json();
+    const parsed = contactSchema.safeParse(body);
 
-
-    if (!name || !email || !message) {
+    if (!parsed.success) {
       return Response.json(
-        {
-          success: false,
-          error: "Missing required fields",
-        },
-        {
-          status: 400,
-        }
+        { success: false, error: "Please provide a valid name, email, and message." },
+        { status: 400 }
       );
     }
 
+    const { name, email, message } = parsed.data;
+    const safeName = escapeHtml(name);
+    const safeEmail = escapeHtml(email);
+    const safeMessage = escapeHtml(message).replaceAll("\n", "<br />");
 
-    await resend.emails.send({
-      from: "onboarding@resend.dev",
-      to: "utech0201@gmail.com",
+    if (!process.env.RESEND_API_KEY || !process.env.CONTACT_EMAIL) {
+      return Response.json(
+        { success: false, error: "Contact service is not configured." },
+        { status: 503 }
+      );
+    }
 
-      subject: `Portfolio Contact from ${name}`,
-
+    const { error } = await resend.emails.send({
+      from: "Portfolio Contact <onboarding@resend.dev>",
+      to: process.env.CONTACT_EMAIL,
+      replyTo: email,
+      subject: "Portfolio Contact from " + name,
       html: `
-        <div style="font-family:sans-serif">
-
-          <h2>
-            New Portfolio Message
-          </h2>
-
-          <p>
-            <strong>Name:</strong> ${name}
-          </p>
-
-          <p>
-            <strong>Email:</strong> ${email}
-          </p>
-
-          <p>
-            <strong>Message:</strong>
-          </p>
-
-          <p>
-            ${message}
-          </p>
-
+        <div style="font-family:Arial,sans-serif;line-height:1.6">
+          <h2>New Portfolio Message</h2>
+          <p><strong>Name:</strong> ${safeName}</p>
+          <p><strong>Email:</strong> ${safeEmail}</p>
+          <p><strong>Message:</strong></p>
+          <p>${safeMessage}</p>
         </div>
       `,
     });
 
+    if (error) {
+      console.error("Resend contact error:", error);
+      return Response.json(
+        { success: false, error: "Failed to send message." },
+        { status: 502 }
+      );
+    }
 
-    return Response.json({
-      success: true,
-    });
-
-
+    return Response.json({ success: true });
   } catch (error) {
-
-    console.error(error);
-
+    console.error("Contact API error:", error);
     return Response.json(
-      {
-        success:false,
-        error:"Failed to send message",
-      },
-      {
-        status:500,
-      }
+      { success: false, error: "Invalid request." },
+      { status: 400 }
     );
   }
 }

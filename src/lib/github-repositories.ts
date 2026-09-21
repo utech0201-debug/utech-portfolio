@@ -1,5 +1,4 @@
-const username = process.env.GITHUB_USERNAME;
-const token = process.env.GITHUB_TOKEN;
+import { getGithubUsername, githubFetch } from "@/lib/github-client";
 
 type GithubRepo = {
   id: number;
@@ -9,74 +8,15 @@ type GithubRepo = {
   stargazers_count: number;
   forks_count: number;
   html_url: string;
+  fork: boolean;
 };
 
-export async function getGithubRepositories(){
+export async function getGithubRepositories() {
+  const username = getGithubUsername();
+  const repos = await githubFetch<GithubRepo[]>(
+    `/users/${encodeURIComponent(username)}/repos?sort=updated&per_page=12`,
+    { next: { revalidate: 1800 } }
+  );
 
-
-const response = await fetch(
-
-`https://api.github.com/users/${username}/repos?sort=updated&per_page=12`,
-
-{
-headers:{
-Authorization:`Bearer ${token}`,
-Accept:"application/vnd.github+json",
-},
-
-next:{
-revalidate:1800,
-},
-
-}
-
-);
-
-
-
-if(!response.ok){
-
-throw new Error(
-"Failed to fetch repositories"
-);
-
-}
-
-
-
-const repos =
-await response.json();
-
-
-
-return repos.map(
-(repo: GithubRepo)=>({
-
-id:repo.id,
-
-name:repo.name,
-
-description:
-repo.description ??
-"No description available",
-
-language:
-repo.language ??
-"Various",
-
-stars:
-repo.stargazers_count,
-
-forks:
-repo.forks_count,
-
-url:
-repo.html_url,
-
-
-})
-
-);
-
-
+  return repos.filter((repo) => !repo.fork);
 }

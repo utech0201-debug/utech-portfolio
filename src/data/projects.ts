@@ -2,28 +2,161 @@ import { Project } from "@/types/project";
 
 export const projects: Project[] = [
   {
+    id: 4,
+    slug: "utech-store",
+    title: "UTECH Store",
+    description:
+      "A redesigned UTECH storefront for showcasing technology products, gaming hardware, laptops, peripherals, and digital experiences through a modern commerce interface.",
+    overview:
+      "UTECH Store is the e-commerce side of the UTECH vision — a modern storefront built to bring software, hardware, gaming products, and useful technology tools together in one polished experience.",
+    image: "/projects/portfolio.png",
+    gallery: ["https://utech-e-commerce.vercel.app/"],
+    github: "https://github.com/utech0201-debug/utech-e-commerce",
+    demo: "https://utech-e-commerce.vercel.app/",
+    technologies: [
+      "Next.js",
+      "React",
+      "TypeScript",
+      "Supabase",
+      "Lucide",
+      "E-commerce",
+    ],
+    features: [
+      "Product Catalog",
+      "Gaming & Hardware Sections",
+      "Responsive Storefront",
+      "Product Discovery",
+      "Checkout Experience",
+      "Modern Tech-focused UI",
+    ],
+    architecture: [
+      "Next.js App Router",
+      "React Component Architecture",
+      "Supabase Data Layer",
+      "Responsive UI System",
+    ],
+    challenges: [
+      "Modernizing an existing storefront",
+      "Creating a stronger product browsing experience",
+      "Keeping the interface responsive across devices",
+      "Balancing visual polish with usability",
+    ],
+    lessons: [
+      "E-commerce UI architecture",
+      "Responsive design",
+      "Product presentation",
+      "Interactive frontend patterns",
+    ],
+    futurePlans: [
+      "Live Product Database",
+      "User Accounts",
+      "Order Tracking",
+      "Mobile Money Integration",
+      "Admin Dashboard",
+      "Production Payments",
+    ],
+    timeline: [
+      "Store Audit",
+      "Design Upgrade",
+      "Product UI",
+      "Checkout",
+      "Responsive Polish",
+      "Deployment",
+    ],
+    stats: {
+      linesOfCode: "25,000+",
+      components: 30,
+      files: 70,
+      duration: "Ongoing",
+      performance: 95,
+      version: "v2.0",
+    },
+  },
+
+  {
+    id: 5,
+    slug: "utech-learning-hub",
+    title: "UTECH Learning Hub",
+    description:
+      "An interactive learning platform for networking, cybersecurity, Linux, hardware, and practical technology education built as part of the UTECH vision.",
+    overview:
+      "UTECH Learning Hub turns the UTECH learning vision into a dedicated digital experience with structured lessons, visual explanations, practical topics, and a growing foundation for a full technology learning platform.",
+    image: "/projects/security.png",
+    gallery: ["https://utech-lms.vercel.app"],
+    github: "https://github.com/utech0201-debug/utech-official-website",
+    demo: "https://utech-lms.vercel.app",
+    technologies: [
+      "React",
+      "Vite",
+      "JavaScript",
+      "CSS",
+      "Networking",
+      "Cybersecurity",
+    ],
+    features: [
+      "Learning Dashboard",
+      "Structured Technology Lessons",
+      "Networking Topics",
+      "Cybersecurity Topics",
+      "Visual Learning Experience",
+      "Progress-focused Interface",
+    ],
+    architecture: [
+      "React UI",
+      "Vite Development Stack",
+      "Lesson Data Architecture",
+      "Reusable Learning Components",
+    ],
+    challenges: [
+      "Turning technical knowledge into engaging lessons",
+      "Designing a scalable learning experience",
+      "Presenting complex networking concepts visually",
+      "Building a foundation for future courses",
+    ],
+    lessons: [
+      "Educational product design",
+      "React component architecture",
+      "Technical content presentation",
+      "Learning experience design",
+    ],
+    futurePlans: [
+      "Authentication",
+      "Course Progress Tracking",
+      "Quizzes & Assessments",
+      "Certificates",
+      "More Cybersecurity Labs",
+      "Full UTECH Learning Platform",
+    ],
+    timeline: [
+      "Learning Hub Concept",
+      "UI Foundation",
+      "Lesson Architecture",
+      "Networking Content",
+      "Cybersecurity Content",
+      "Continuous Development",
+    ],
+    stats: {
+      linesOfCode: "10,000+",
+      components: 35,
+      files: 50,
+      duration: "Ongoing",
+      performance: 95,
+      version: "v1.0",
+    },
+  },
+
+  {
     id: 1,
-
     slug: "online-banking-management-system",
-
     title: "Online Banking Management System",
-
     description:
       "A secure full-stack banking platform featuring authentication, account management, transactions, dashboards, analytics, and modern financial workflows.",
-
     overview:
       "The Online Banking Management System is a production-style banking application designed to simulate modern digital banking. The project emphasizes security, scalability, responsive user experience, and clean software architecture while implementing real-world banking concepts.",
-
     image: "/projects/banking.png",
-
-    gallery: [
-      "/projects/banking.png",
-    ],
-
+    gallery: ["/projects/banking.png"],
     github: "",
-
     demo: "",
-
     technologies: [
       "Next.js",
       "React",
@@ -33,7 +166,6 @@ export const projects: Project[] = [
       "PostgreSQL",
       "Server Actions",
     ],
-
     features: [
       "Secure User Authentication",
       "Customer Dashboard",
@@ -45,7 +177,6 @@ export const projects: Project[] = [
       "Modern Banking UI",
       "Protected Routes",
     ],
-
     architecture: [
       "Next.js App Router",
       "Server Components",
@@ -54,7 +185,6 @@ export const projects: Project[] = [
       "PostgreSQL Database",
       "REST-style API Structure",
     ],
-
     challenges: [
       "Designing a scalable relational database",
       "Creating secure transaction workflows",
@@ -62,7 +192,6 @@ export const projects: Project[] = [
       "Building responsive banking dashboards",
       "Keeping code modular and maintainable",
     ],
-
     lessons: [
       "Advanced database modeling",
       "Secure backend architecture",
@@ -70,7 +199,6 @@ export const projects: Project[] = [
       "Prisma best practices",
       "Building enterprise-scale React applications",
     ],
-
     futurePlans: [
       "Two-Factor Authentication",
       "Email Notifications",
@@ -79,7 +207,6 @@ export const projects: Project[] = [
       "AI Financial Insights",
       "Admin Dashboard",
     ],
-
     timeline: [
       "Project Planning",
       "Requirements Analysis",
@@ -90,7 +217,6 @@ export const projects: Project[] = [
       "Testing",
       "Deployment",
     ],
-
     stats: {
       linesOfCode: "18,000+",
       components: 55,
@@ -103,29 +229,16 @@ export const projects: Project[] = [
 
   {
     id: 2,
-
     slug: "utech-portfolio",
-
     title: "Utech Portfolio",
-
     description:
       "A modern developer portfolio built with Next.js, TypeScript, Tailwind CSS, Framer Motion, GitHub APIs, SEO optimization, and interactive project pages.",
-
     overview:
       "This portfolio serves as my personal brand and professional showcase. It demonstrates my frontend, backend, API integration, responsive design, and UI/UX skills while presenting my projects through detailed interactive case studies.",
-
     image: "/projects/portfolio.png",
-
-    gallery: [
-      "/projects/portfolio.png",
-    ],
-
-    github:
-      "https://github.com/utech0201-debug/utech-portfolio",
-
-    demo:
-      "https://utech-portfolio.vercel.app",
-
+    gallery: ["/projects/portfolio.png"],
+    github: "https://github.com/utech0201-debug/utech-portfolio",
+    demo: "https://utech-portfolio.vercel.app",
     technologies: [
       "Next.js",
       "React",
@@ -135,7 +248,6 @@ export const projects: Project[] = [
       "GitHub API",
       "Vercel",
     ],
-
     features: [
       "Responsive Design",
       "Dark Mode",
@@ -147,7 +259,6 @@ export const projects: Project[] = [
       "Developer Terminal",
       "Performance Optimization",
     ],
-
     architecture: [
       "Next.js App Router",
       "Server Components",
@@ -155,7 +266,6 @@ export const projects: Project[] = [
       "Resend Email API",
       "Static Generation",
     ],
-
     challenges: [
       "Optimizing loading performance",
       "Integrating multiple APIs",
@@ -163,7 +273,6 @@ export const projects: Project[] = [
       "Designing modern UI animations",
       "Maintaining responsive layouts",
     ],
-
     lessons: [
       "Advanced Next.js architecture",
       "API integration",
@@ -171,7 +280,6 @@ export const projects: Project[] = [
       "SEO implementation",
       "Professional UI design",
     ],
-
     futurePlans: [
       "Developer Blog",
       "Headless CMS",
@@ -180,7 +288,6 @@ export const projects: Project[] = [
       "Analytics Dashboard",
       "Project Search",
     ],
-
     timeline: [
       "Planning",
       "Wireframing",
@@ -192,7 +299,6 @@ export const projects: Project[] = [
       "Deployment",
       "Continuous Updates",
     ],
-
     stats: {
       linesOfCode: "7,307",
       components: 39,
@@ -205,27 +311,16 @@ export const projects: Project[] = [
 
   {
     id: 3,
-
     slug: "cybersecurity-labs",
-
     title: "Cybersecurity Labs",
-
     description:
       "A collection of cybersecurity learning environments focused on networking, Linux administration, defensive security concepts, and ethical security research.",
-
     overview:
       "Cybersecurity Labs is a continuously growing collection of isolated practice environments used to strengthen knowledge of networking, Linux, security fundamentals, and responsible security testing within controlled environments.",
-
     image: "/projects/security.png",
-
-    gallery: [
-      "/projects/security.png",
-    ],
-
+    gallery: ["/projects/security.png"],
     github: "",
-
     demo: "",
-
     technologies: [
       "Linux",
       "Kali Linux",
@@ -234,7 +329,6 @@ export const projects: Project[] = [
       "Wireshark",
       "Nmap",
     ],
-
     features: [
       "Virtual Security Labs",
       "Linux Administration",
@@ -243,21 +337,18 @@ export const projects: Project[] = [
       "Security Research",
       "Documentation",
     ],
-
     architecture: [
       "Virtual Machines",
       "Linux Environment",
       "Private Networks",
       "Security Tools",
     ],
-
     challenges: [
       "Creating isolated testing environments",
       "Learning networking protocols",
       "Understanding defensive security concepts",
       "Documenting experiments clearly",
     ],
-
     lessons: [
       "Linux proficiency",
       "Network troubleshooting",
@@ -265,7 +356,6 @@ export const projects: Project[] = [
       "Lab documentation",
       "Responsible security practices",
     ],
-
     futurePlans: [
       "CTF Writeups",
       "Cloud Security Labs",
@@ -274,7 +364,6 @@ export const projects: Project[] = [
       "Blue Team Labs",
       "SOC Simulation",
     ],
-
     timeline: [
       "Research",
       "Lab Design",
@@ -284,7 +373,6 @@ export const projects: Project[] = [
       "Documentation",
       "Continuous Learning",
     ],
-
     stats: {
       linesOfCode: "1,274",
       components: 6,
@@ -292,7 +380,6 @@ export const projects: Project[] = [
       duration: "Ongoing",
       performance: 100,
       version: "v1.0",
-
       metrics: [
         {
           label: "Source Lines",

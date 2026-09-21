@@ -1,191 +1,157 @@
-const username = process.env.GITHUB_USERNAME;
-const token = process.env.GITHUB_TOKEN;
-
+import {
+  getGithubUsername,
+  githubFetch,
+  githubGraphQL,
+} from "@/lib/github-client";
 
 interface LanguageMap {
-  [key:string]: number;
+  [key: string]: number;
 }
 
-
-
-export async function getGithubLanguages(){
-
-
-if(!username){
-
-throw new Error(
-"GITHUB_USERNAME missing"
-);
-
+interface GraphQLLanguageEdge {
+  size: number;
+  node: {
+    name: string;
+  } | null;
 }
 
-
-
-const response = await fetch(
-
-`https://api.github.com/users/${username}/repos?per_page=100`,
-
-{
-
-headers:{
-
-...(token && {
-
-Authorization:
-`Bearer ${token}`,
-
-}),
-
-Accept:
-"application/vnd.github+json",
-
-},
-
-
-next:{
-revalidate:3600,
+interface GraphQLRepository {
+  languages: {
+    edges: GraphQLLanguageEdge[];
+  };
 }
 
+interface GraphQLRepositories {
+  pageInfo: {
+    hasNextPage: boolean;
+    endCursor: string | null;
+  };
+  nodes: GraphQLRepository[];
 }
 
-);
-
-
-
-if(!response.ok){
-
-throw new Error(
-"Failed fetching repositories"
-);
-
+interface GraphQLResponse {
+  user: {
+    repositories: GraphQLRepositories;
+  } | null;
 }
 
+const query = `
+  query GetRepositoryLanguages($login: String!, $after: String) {
+    user(login: $login) {
+      repositories(
+        first: 100
+        after: $after
+        ownerAffiliations: OWNER
+        privacy: PUBLIC
+        isFork: false
+        orderBy: { field: UPDATED_AT, direction: DESC }
+      ) {
+        pageInfo {
+          hasNextPage
+          endCursor
+        }
+        nodes {
+          languages(first: 10, orderBy: { field: SIZE, direction: DESC }) {
+            edges {
+              size
+              node {
+                name
+              }
+            }
+          }
+        }
+      }
+    }
+  }
+`;
 
+async function fetchLanguagesFromGraphQL(
+  username: string
+): Promise<LanguageMap> {
+  const languages: LanguageMap = {};
+  let after: string | null = null;
 
-const repos =
-await response.json();
+  do {
+    const data: GraphQLResponse = await githubGraphQL<GraphQLResponse>(
+      query,
+      {
+        login: username,
+        after,
+      }
+    );
 
+    const repositories: GraphQLRepositories | null =
+      data.user?.repositories ?? null;
 
+    if (!repositories) {
+      throw new Error("GitHub user or repository data not found");
+    }
 
-const languages:
-LanguageMap = {};
+    for (const repository of repositories.nodes) {
+      for (const edge of repository.languages.edges) {
+        if (!edge.node?.name) continue;
 
+        languages[edge.node.name] =
+          (languages[edge.node.name] ?? 0) + edge.size;
+      }
+    }
 
+    after = repositories.pageInfo.hasNextPage
+      ? repositories.pageInfo.endCursor
+      : null;
+  } while (after);
 
-for(const repo of repos){
-
-
-if(repo.fork)
-continue;
-
-
-
-const languageResponse =
-await fetch(
-
-repo.languages_url,
-
-{
-
-headers:{
-
-...(token && {
-
-Authorization:
-`Bearer ${token}`,
-
-}),
-
-Accept:
-"application/vnd.github+json",
-
-},
-
+  return languages;
 }
 
-);
+async function fetchLanguagesFromRest(
+  username: string
+): Promise<LanguageMap> {
+  const repos = await githubFetch<
+    Array<{
+      fork: boolean;
+      language: string | null;
+    }>
+  >(
+    `/users/${encodeURIComponent(username)}/repos?per_page=100&type=owner`
+  );
 
+  const languages: LanguageMap = {};
 
+  for (const repo of repos) {
+    if (repo.fork || !repo.language) continue;
 
-if(!languageResponse.ok)
-continue;
+    languages[repo.language] = (languages[repo.language] ?? 0) + 1;
+  }
 
-
-
-const data =
-await languageResponse.json();
-
-
-
-Object.entries(data)
-.forEach(
-
-([language,bytes])=>{
-
-
-languages[language] =
-(languages[language] ?? 0)
-+
-Number(bytes);
-
-
+  return languages;
 }
 
-);
+export async function getGithubLanguages() {
+  const username = getGithubUsername();
+  let languages: LanguageMap;
 
+  try {
+    languages = process.env.GITHUB_TOKEN
+      ? await fetchLanguagesFromGraphQL(username)
+      : await fetchLanguagesFromRest(username);
+  } catch (error) {
+    console.error("Failed to fetch GitHub language data:", error);
+    languages = await fetchLanguagesFromRest(username);
+  }
 
-}
+  const total = Object.values(languages).reduce(
+    (sum, value) => sum + value,
+    0
+  );
 
+  if (total === 0) return [];
 
-
-const total =
-Object.values(languages)
-.reduce(
-
-(sum,value)=>
-sum + value,
-
-0
-
-);
-
-
-
-if(total === 0)
-return [];
-
-
-
-return Object.entries(languages)
-
-.map(
-([name,value])=>({
-
-name,
-
-percentage:
-
-Math.round(
-
-(value / total)
-*
-100
-
-),
-
-})
-
-)
-
-.sort(
-
-(a,b)=>
-b.percentage-a.percentage
-
-)
-
-.slice(0,5);
-
-
-
+  return Object.entries(languages)
+    .map(([name, value]) => ({
+      name,
+      percentage: Math.round((value / total) * 100),
+    }))
+    .sort((a, b) => b.percentage - a.percentage)
+    .slice(0, 5);
 }

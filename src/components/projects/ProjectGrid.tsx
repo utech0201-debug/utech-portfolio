@@ -5,22 +5,16 @@ import { projects } from "@/data/projects";
 
 export default function ProjectGrid() {
   return (
-    <section
-      id="projects"
-      className="mx-auto max-w-7xl px-6 py-24"
-    >
-      <div className="text-center">
-        <p className="font-semibold uppercase text-blue-500">
-          Projects
-        </p>
-
-        <h2 className="mt-3 text-4xl font-black">
-          Featured Work
-        </h2>
-
-        <p className="mx-auto mt-4 max-w-xl text-gray-400">
-          Explore my latest applications, experiments,
-          and development projects.
+    <section id="projects" className="mx-auto max-w-7xl px-6 py-28">
+      <div className="flex flex-col gap-5 text-center lg:flex-row lg:items-end lg:justify-between lg:text-left">
+        <div>
+          <p className="section-kicker">Selected work</p>
+          <h2 className="mt-3 text-4xl font-black tracking-tight text-white sm:text-5xl">
+            Latest builds & selected work.
+          </h2>
+        </div>
+        <p className="max-w-xl text-sm leading-7 text-gray-500">
+          From the UTECH Store and Learning Hub to security labs and banking systems — these are the projects I&apos;m actively building, refining and learning from.
         </p>
       </div>
 

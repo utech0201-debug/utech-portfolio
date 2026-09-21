@@ -1,109 +1,53 @@
-const username = process.env.GITHUB_USERNAME;
-const token = process.env.GITHUB_TOKEN;
+import { getGithubUsername, githubGraphQL } from "@/lib/github-client";
 
-
-export async function getGithubContributions(){
-
-
-if(!username || !token){
-
-throw new Error(
-"GitHub credentials missing"
-);
-
+interface ContributionCalendar {
+  totalContributions: number;
+  weeks: Array<{
+    contributionDays: Array<{
+      date: string;
+      contributionCount: number;
+    }>;
+  }>;
 }
 
-
-
-const query = `
-
-query {
-
-user(login:"${username}"){
-
-contributionsCollection{
-
-contributionCalendar{
-
-totalContributions
-
-weeks{
-
-contributionDays{
-
-date
-
-contributionCount
-
+interface GithubContributionResponse {
+  user: {
+    contributionsCollection: {
+      contributionCalendar: ContributionCalendar;
+    } | null;
+  } | null;
 }
 
-}
+export async function getGithubContributions(): Promise<ContributionCalendar> {
+  const username = getGithubUsername();
 
-}
+  const query = `
+    query GetContributions($login: String!) {
+      user(login: $login) {
+        contributionsCollection {
+          contributionCalendar {
+            totalContributions
+            weeks {
+              contributionDays {
+                date
+                contributionCount
+              }
+            }
+          }
+        }
+      }
+    }
+  `;
 
-}
+  const data = await githubGraphQL<GithubContributionResponse>(query, {
+    login: username,
+  });
 
-}
+  const calendar = data.user?.contributionsCollection?.contributionCalendar;
 
-}
+  if (!calendar) {
+    throw new Error("GitHub contribution data unavailable");
+  }
 
-`;
-
-
-
-const response =
-await fetch(
-"https://api.github.com/graphql",
-{
-
-method:"POST",
-
-headers:{
-
-Authorization:
-`Bearer ${token}`,
-
-"Content-Type":
-"application/json",
-
-},
-
-body:
-JSON.stringify({
-query
-}),
-
-next:{
-revalidate:3600,
-},
-
-}
-
-);
-
-
-
-if(!response.ok){
-
-throw new Error(
-"Failed fetching GitHub contributions"
-);
-
-}
-
-
-
-const result =
-await response.json();
-
-
-
-return (
-
-result.data.user
-.contributionsCollection
-.contributionCalendar
-
-);
-
+  return calendar;
 }

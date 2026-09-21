@@ -1,70 +1,48 @@
-"use client";
-
-import { motion } from "framer-motion";
-
 const skillCategories = [
-  {
-    title: "Frontend",
-    skills: ["Next.js", "React", "TypeScript", "JavaScript", "Tailwind CSS"],
-  },
-  {
-    title: "Backend",
-    skills: ["Node.js", "Express", "REST APIs"],
-  },
-  {
-    title: "Database",
-    skills: ["PostgreSQL", "Prisma", "MongoDB"],
-  },
-  {
-    title: "Tools",
-    skills: ["Git", "GitHub", "VS Code", "Figma"],
-  },
+  { title: "Frontend", skills: ["Next.js", "React", "TypeScript", "JavaScript", "Tailwind CSS"] },
+  { title: "Backend", skills: ["Node.js", "Express", "REST APIs"] },
+  { title: "Database", skills: ["PostgreSQL", "Prisma", "MongoDB"] },
+  { title: "Tools", skills: ["Git", "GitHub", "VS Code", "Figma"] },
 ];
 
 export default function Skills() {
   return (
-    <section
-      id="skills"
-      className="mx-auto max-w-7xl px-6 py-24"
-    >
-      <motion.div
-        initial={{ opacity: 0, y: 40 }}
-        whileInView={{ opacity: 1, y: 0 }}
-        transition={{ duration: 0.6 }}
-        viewport={{ once: true }}
-      >
-        <p className="mb-2 text-blue-500 font-semibold uppercase tracking-wider">
-          Skills
-        </p>
+    <section id="skills" className="mx-auto max-w-7xl px-6 py-24">
+      <div className="reveal">
+        <p className="section-kicker">Skills</p>
+        <div className="mt-3 flex flex-col gap-3 sm:flex-row sm:items-end sm:justify-between">
+          <h2 className="text-4xl font-black tracking-tight text-white sm:text-5xl">
+            The stack behind the builds.
+          </h2>
+          <p className="max-w-md text-sm leading-6 text-gray-500">
+            Tools I use to turn ideas into fast, secure and maintainable products.
+          </p>
+        </div>
 
-        <h2 className="text-4xl font-bold">
-          Technologies I Use
-        </h2>
-
-        <div className="mt-12 grid gap-8 md:grid-cols-2">
-          {skillCategories.map((category) => (
-            <div
+        <div className="mt-12 grid gap-5 md:grid-cols-2">
+          {skillCategories.map((category, index) => (
+            <article
               key={category.title}
-              className="rounded-2xl border border-white/10 bg-white/5 p-6 backdrop-blur-md"
+              className="glass-card group p-7 transition duration-300 hover:-translate-y-1 hover:border-blue-400/30"
             >
-              <h3 className="mb-4 text-xl font-semibold text-blue-400">
-                {category.title}
-              </h3>
-
-              <div className="flex flex-wrap gap-3">
+              <div className="flex items-center justify-between">
+                <h3 className="text-xl font-bold text-white">{category.title}</h3>
+                <span className="font-mono text-xs text-blue-300">0{index + 1}</span>
+              </div>
+              <div className="mt-6 flex flex-wrap gap-2.5">
                 {category.skills.map((skill) => (
                   <span
                     key={skill}
-                    className="rounded-full border border-blue-500/30 bg-blue-500/10 px-4 py-2 text-sm transition hover:bg-blue-500 hover:text-white"
+                    className="rounded-lg border border-white/10 bg-white/[0.04] px-3.5 py-2 text-sm text-gray-300 transition hover:border-blue-400/30 hover:bg-blue-400/10 hover:text-white"
                   >
                     {skill}
                   </span>
                 ))}
               </div>
-            </div>
+            </article>
           ))}
         </div>
-      </motion.div>
+      </div>
     </section>
   );
 }

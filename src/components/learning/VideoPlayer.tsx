@@ -1,6 +1,6 @@
 "use client";
 
-import { useEffect } from "react";
+import { useEffect, useRef } from "react";
 import { AnimatePresence, motion } from "framer-motion";
 import { X, Play, ShieldCheck, Network, Cpu } from "lucide-react";
 import type { LearningVideo } from "@/data/videos";
@@ -20,12 +20,39 @@ export default function VideoPlayer({
   video,
   onClose,
 }: VideoPlayerProps) {
+  const closeButtonRef = useRef<HTMLButtonElement>(null);
+
   useEffect(() => {
     if (!video) return;
+
+    const previousActiveElement = document.activeElement as HTMLElement | null;
 
     const handleKeyDown = (event: KeyboardEvent) => {
       if (event.key === "Escape") {
         onClose();
+        return;
+      }
+
+      if (event.key !== "Tab") return;
+
+      const dialog = closeButtonRef.current?.closest('[role="dialog"]');
+      if (!dialog) return;
+
+      const focusable = dialog.querySelectorAll<HTMLElement>(
+        'button:not([disabled]), video, a[href], input:not([disabled]), textarea:not([disabled]), select:not([disabled]), [tabindex]:not([tabindex="-1"])'
+      );
+
+      if (focusable.length === 0) return;
+
+      const first = focusable[0];
+      const last = focusable[focusable.length - 1];
+
+      if (event.shiftKey && document.activeElement === first) {
+        event.preventDefault();
+        last.focus();
+      } else if (!event.shiftKey && document.activeElement === last) {
+        event.preventDefault();
+        first.focus();
       }
     };
 
@@ -33,10 +60,12 @@ export default function VideoPlayer({
 
     const previousOverflow = document.body.style.overflow;
     document.body.style.overflow = "hidden";
+    requestAnimationFrame(() => closeButtonRef.current?.focus());
 
     return () => {
       document.removeEventListener("keydown", handleKeyDown);
       document.body.style.overflow = previousOverflow;
+      previousActiveElement?.focus();
     };
   }, [video, onClose]);
 
@@ -61,7 +90,7 @@ export default function VideoPlayer({
           "
           role="dialog"
           aria-modal="true"
-          aria-label={video.title}
+          aria-labelledby="learning-video-title"
           onMouseDown={(event) => {
             if (event.target === event.currentTarget) {
               onClose();
@@ -89,6 +118,7 @@ export default function VideoPlayer({
           >
             {/* Close button */}
             <button
+              ref={closeButtonRef}
               type="button"
               onClick={onClose}
               aria-label="Close video player"
@@ -174,6 +204,7 @@ export default function VideoPlayer({
               </div>
 
               <h2
+                id="learning-video-title"
                 className="
                   mt-5
                   text-2xl

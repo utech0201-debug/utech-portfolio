@@ -113,7 +113,7 @@ export default function ProfileCard() {
           "
         >
           <Image
-            src="/profile.png"
+            src="/profile.jpg"
             alt="Oscar Dziedzorm"
             fill
             sizes="128px"
