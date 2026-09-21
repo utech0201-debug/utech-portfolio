@@ -10,12 +10,11 @@ export default function ProjectGrid() {
         <div>
           <p className="section-kicker">Selected work</p>
           <h2 className="mt-3 text-4xl font-black tracking-tight text-white sm:text-5xl">
-            Projects built to solve real problems.
+            Latest builds & selected work.
           </h2>
         </div>
         <p className="max-w-xl text-sm leading-7 text-gray-500">
-          Applications, experiments and systems I&apos;ve designed, developed and
-          shipped while learning modern software engineering.
+          From the UTECH Store and Learning Hub to security labs and banking systems — these are the projects I&apos;m actively building, refining and learning from.
         </p>
       </div>
 
