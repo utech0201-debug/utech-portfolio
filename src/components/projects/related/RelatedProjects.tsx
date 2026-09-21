@@ -5,7 +5,6 @@ import { motion } from "framer-motion";
 import { ArrowRight, Radio } from "lucide-react";
 
 import { projects } from "@/data/projects";
-import ProjectPreview from "@/components/projects/ProjectPreview";
 
 interface Props {
   currentSlug: string;
@@ -48,22 +47,23 @@ export default function RelatedProjects({ currentSlug }: Props) {
                 href={`/projects/${project.slug}`}
                 className="group block overflow-hidden rounded-3xl border border-white/10 bg-white/5 backdrop-blur-xl"
               >
-                <div className="relative h-60 overflow-hidden">
+                <div className="relative h-60 overflow-hidden bg-slate-950">
                   {live ? (
-                    <div className="absolute inset-0">
-                      <ProjectPreview
-                        variant={
-                          project.slug === "utech-store"
-                            ? "store"
-                            : "learning"
-                        }
+                    <>
+                      <iframe
+                        src={project.demo}
+                        title={`${project.title} live preview`}
+                        loading="lazy"
+                        className="pointer-events-none absolute left-1/2 top-0 h-[560px] w-[960px] -translate-x-1/2 origin-top scale-[0.625] border-0"
+                        tabIndex={-1}
+                        allow="fullscreen"
                       />
-                      <div className="absolute inset-0 bg-gradient-to-t from-black/80 via-black/20 to-transparent" />
-                      <div className="absolute left-4 top-4 flex items-center gap-2 rounded-full border border-emerald-400/20 bg-slate-950/85 px-3 py-1.5 text-xs font-semibold text-emerald-300 backdrop-blur">
+                      <div className="pointer-events-none absolute inset-0 bg-gradient-to-t from-black/80 via-black/10 to-transparent" />
+                      <div className="pointer-events-none absolute left-4 top-4 flex items-center gap-2 rounded-full border border-emerald-400/20 bg-slate-950/85 px-3 py-1.5 text-xs font-semibold text-emerald-300 backdrop-blur">
                         <Radio size={12} />
                         LIVE PREVIEW
                       </div>
-                    </div>
+                    </>
                   ) : (
                     <>
                       <img
