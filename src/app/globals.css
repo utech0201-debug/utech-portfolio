@@ -12,7 +12,6 @@
   --card-border: rgba(255, 255, 255, 0.08);
 
   --muted: #9ca3af;
-
   --primary: #3b82f6;
 }
 
@@ -29,6 +28,7 @@ html {
 ========================================== */
 
 body {
+  min-height: 100vh;
   background: var(--background);
   color: var(--foreground);
 
@@ -75,6 +75,34 @@ a {
 button {
   cursor: pointer;
   transition: 0.25s;
+}
+
+/* ==========================================
+   KEYBOARD FOCUS
+========================================== */
+
+:where(a, button, input, textarea, select, [tabindex]):focus-visible {
+  outline: 2px solid var(--primary);
+  outline-offset: 3px;
+}
+
+/* ==========================================
+   REDUCED MOTION
+========================================== */
+
+@media (prefers-reduced-motion: reduce) {
+  html {
+    scroll-behavior: auto;
+  }
+
+  *,
+  *::before,
+  *::after {
+    scroll-behavior: auto !important;
+    animation-duration: 0.01ms !important;
+    animation-iteration-count: 1 !important;
+    transition-duration: 0.01ms !important;
+  }
 }
 
 /* ==========================================
