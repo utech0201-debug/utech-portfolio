@@ -70,12 +70,16 @@ async function fetchLanguagesFromGraphQL(
   let after: string | null = null;
 
   do {
-    const data = await githubGraphQL<GraphQLResponse>(query, {
-      login: username,
-      after,
-    });
+    const data: GraphQLResponse = await githubGraphQL<GraphQLResponse>(
+      query,
+      {
+        login: username,
+        after,
+      }
+    );
 
-    const repositories = data.user?.repositories;
+    const repositories: GraphQLResponse["user"]["repositories"] | null =
+      data.user?.repositories ?? null;
 
     if (!repositories) {
       throw new Error("GitHub user or repository data not found");
