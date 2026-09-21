@@ -1,24 +1,21 @@
-const username = process.env.GITHUB_USERNAME;
-const token = process.env.GITHUB_TOKEN;
+import { getGithubUsername, githubFetch } from "@/lib/github-client";
+
+interface GithubProfileResponse {
+  login: string;
+  name: string | null;
+  avatar_url: string;
+  bio: string | null;
+  public_repos: number;
+  followers: number;
+  following: number;
+  html_url: string;
+}
 
 export async function getGithubProfile() {
-  if (!username) {
-    throw new Error("GITHUB_USERNAME is missing in environment variables");
-  }
-
-  const response = await fetch(`https://api.github.com/users/${username}`, {
-    headers: {
-      Accept: "application/vnd.github+json",
-      ...(token && { Authorization: `Bearer ${token}` }),
-    },
-    next: { revalidate: 3600 },
-  });
-
-  if (!response.ok) {
-    throw new Error("Failed to fetch GitHub profile");
-  }
-
-  const profile = await response.json();
+  const username = getGithubUsername();
+  const profile = await githubFetch<GithubProfileResponse>(
+    `/users/${encodeURIComponent(username)}`
+  );
 
   return {
     username: profile.login,
