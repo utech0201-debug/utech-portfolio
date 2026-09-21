@@ -21,15 +21,17 @@ interface GraphQLRepository {
   };
 }
 
+interface GraphQLRepositories {
+  pageInfo: {
+    hasNextPage: boolean;
+    endCursor: string | null;
+  };
+  nodes: GraphQLRepository[];
+}
+
 interface GraphQLResponse {
   user: {
-    repositories: {
-      pageInfo: {
-        hasNextPage: boolean;
-        endCursor: string | null;
-      };
-      nodes: GraphQLRepository[];
-    };
+    repositories: GraphQLRepositories;
   } | null;
 }
 
@@ -78,7 +80,7 @@ async function fetchLanguagesFromGraphQL(
       }
     );
 
-    const repositories: GraphQLResponse["user"]["repositories"] | null =
+    const repositories: GraphQLRepositories | null =
       data.user?.repositories ?? null;
 
     if (!repositories) {
