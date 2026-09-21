@@ -2,14 +2,12 @@
   "name": "my-portfolio",
   "version": "0.1.0",
   "private": true,
-
   "scripts": {
     "dev": "next dev",
     "build": "next build",
     "start": "next start",
     "lint": "eslint ."
   },
-
   "dependencies": {
     "@hookform/resolvers": "^5.4.0",
     "@radix-ui/react-slot": "^1.3.1",
@@ -27,7 +25,6 @@
     "tailwind-merge": "^3.6.0",
     "zod": "^4.4.3"
   },
-
   "devDependencies": {
     "@tailwindcss/postcss": "^4",
     "@types/node": "^20",
@@ -38,5 +35,15 @@
     "eslint-config-next": "16.3.3",
     "tailwindcss": "^4",
     "typescript": "^5"
+  },
+  "overrides": {
+    "minimatch@3.1.5": {
+      "brace-expansion": "1.1.18"
+    },
+    "minimatch@10.2.5": {
+      "brace-expansion": "5.0.9"
+    },
+    "js-yaml": "4.3.1",
+    "nanoid": "3.3.18"
   }
 }
