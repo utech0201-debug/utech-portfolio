@@ -10,7 +10,7 @@ export const projects: Project[] = [
     overview:
       "UTECH Store is the e-commerce side of the UTECH vision — a modern storefront built to bring software, hardware, gaming products, and useful technology tools together in one polished experience.",
     image: "/projects/portfolio.png",
-    gallery: ["/projects/portfolio.png"],
+    gallery: ["https://utech-e-commerce.vercel.app/"],
     github: "https://github.com/utech0201-debug/utech-e-commerce",
     demo: "https://utech-e-commerce.vercel.app/",
     technologies: [
@@ -82,7 +82,7 @@ export const projects: Project[] = [
     overview:
       "UTECH Learning Hub turns the UTECH learning vision into a dedicated digital experience with structured lessons, visual explanations, practical topics, and a growing foundation for a full technology learning platform.",
     image: "/projects/security.png",
-    gallery: ["/projects/security.png"],
+    gallery: ["https://utech-lms.vercel.app"],
     github: "https://github.com/utech0201-debug/utech-official-website",
     demo: "https://utech-lms.vercel.app",
     technologies: [
