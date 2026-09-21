@@ -4,12 +4,12 @@ import Link from "next/link";
 import MobileMenu from "./MobileMenu";
 
 const navItems = [
-  { name: "Home", href: "#" },
-  { name: "About", href: "#about" },
-  { name: "Skills", href: "#skills" },
-  { name: "Projects", href: "#projects" },
-  { name: "Learning", href: "#learning" },
-  { name: "Contact", href: "#contact" },
+  { name: "Home", href: "/" },
+  { name: "About", href: "/#about" },
+  { name: "Skills", href: "/#skills" },
+  { name: "Projects", href: "/projects" },
+  { name: "Learning", href: "/learning" },
+  { name: "Contact", href: "/#contact" },
 ];
 
 export default function Navbar() {
@@ -27,22 +27,22 @@ export default function Navbar() {
 
         <nav className="hidden items-center gap-1 md:flex">
           {navItems.map((item) => (
-            <a
+            <Link
               key={item.name}
               href={item.href}
               className="rounded-lg px-3 py-2 text-xs font-medium text-gray-400 transition hover:bg-white/5 hover:text-white"
             >
               {item.name}
-            </a>
+            </Link>
           ))}
         </nav>
 
-        <a
-          href="#contact"
+        <Link
+          href="/#contact"
           className="hidden rounded-lg border border-blue-400/20 bg-blue-400/10 px-3.5 py-2 text-xs font-semibold text-blue-200 transition hover:border-blue-400/40 hover:bg-blue-400/15 sm:inline-flex"
         >
           Let&apos;s connect
-        </a>
+        </Link>
 
         <div className="md:hidden">
           <MobileMenu />
