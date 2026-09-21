@@ -1,5 +1,6 @@
 import Link from "next/link";
-import { ArrowUpRight, Github, Linkedin, Mail } from "lucide-react";
+import { ArrowUpRight, Mail } from "lucide-react";
+import { FaGithub, FaLinkedin } from "react-icons/fa";
 
 export default function Footer() {
   return (
@@ -14,7 +15,6 @@ export default function Footer() {
             technology learning — built from Ghana.
           </p>
         </div>
-
         <div>
           <p className="text-xs font-semibold uppercase tracking-[0.18em] text-gray-500">Explore</p>
           <div className="mt-4 flex flex-col gap-3 text-sm text-gray-400">
@@ -24,13 +24,12 @@ export default function Footer() {
             <Link href="/#contact" className="transition hover:text-white">Contact</Link>
           </div>
         </div>
-
         <div>
           <p className="text-xs font-semibold uppercase tracking-[0.18em] text-gray-500">Connect</p>
           <div className="mt-4 flex flex-col gap-3 text-sm text-gray-400">
             <a href="mailto:utech0201@gmail.com" className="flex items-center gap-2 transition hover:text-white"><Mail size={15}/> Email <ArrowUpRight size={13}/></a>
-            <a href="https://github.com/utech0201-debug" target="_blank" rel="noopener noreferrer" className="flex items-center gap-2 transition hover:text-white"><Github size={15}/> GitHub <ArrowUpRight size={13}/></a>
-            <a href="https://www.linkedin.com/in/Utech0201" target="_blank" rel="noopener noreferrer" className="flex items-center gap-2 transition hover:text-white"><Linkedin size={15}/> LinkedIn <ArrowUpRight size={13}/></a>
+            <a href="https://github.com/utech0201-debug" target="_blank" rel="noopener noreferrer" className="flex items-center gap-2 transition hover:text-white"><FaGithub size={15}/> GitHub <ArrowUpRight size={13}/></a>
+            <a href="https://www.linkedin.com/in/Utech0201" target="_blank" rel="noopener noreferrer" className="flex items-center gap-2 transition hover:text-white"><FaLinkedin size={15}/> LinkedIn <ArrowUpRight size={13}/></a>
           </div>
         </div>
       </div>
