@@ -1,5 +1,6 @@
 "use client";
 
+import Image from "next/image";
 import { motion } from "framer-motion";
 import { Play, ShieldCheck, Network, Cpu } from "lucide-react";
 import type { LearningVideo } from "@/data/videos";
@@ -52,17 +53,14 @@ export default function VideoCard({
         "
         aria-label={`Watch ${video.title}`}
       >
-        {/* Video preview */}
+        {/* Static poster preview — avoids loading video files for every card */}
         <div className="relative aspect-video overflow-hidden bg-black">
-          <video
-            src={video.video}
-            poster={video.poster}
-            preload="metadata"
-            muted
-            playsInline
+          <Image
+            src={video.poster}
+            alt=""
+            fill
+            sizes="(min-width: 1024px) 33vw, (min-width: 640px) 50vw, 100vw"
             className="
-              h-full
-              w-full
               object-cover
               transition
               duration-500
