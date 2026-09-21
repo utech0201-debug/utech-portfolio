@@ -106,21 +106,25 @@ export default function ProjectCard({
               text-white
             "
           >
-            Featured
+            {project.id >= 4 ? "Latest Build" : "Featured"}
           </span>
+          {project.id >= 4 && (
+            <span className="absolute right-4 top-4 rounded-full border border-emerald-400/20 bg-emerald-500/10 px-3 py-1 text-[10px] font-semibold uppercase tracking-[0.16em] text-emerald-300 backdrop-blur">
+              UTECH
+            </span>
+          )}
         </div>
 
         {/* Content */}
         <div className="p-7">
-          <h3
-            className="
-              text-2xl
-              font-bold
-              text-white
-            "
-          >
-            {project.title}
-          </h3>
+          <div className="flex items-start justify-between gap-4">
+            <h3 className="text-2xl font-bold tracking-tight text-white">
+              {project.title}
+            </h3>
+            <span className="mt-1 shrink-0 font-mono text-[10px] uppercase tracking-[0.18em] text-gray-600">
+              {String(project.id).padStart(2, "0")}
+            </span>
+          </div>
 
           <p
             className="
@@ -156,7 +160,7 @@ export default function ProjectCard({
           <div className="my-6 border-t border-white/10" />
 
           {/* Buttons */}
-          <div className="grid gap-3 md:grid-cols-3">
+          <div className={`grid gap-3 ${project.demo ? "sm:grid-cols-2 lg:grid-cols-3" : "sm:grid-cols-2"}`}>
             <Link
               href={`/projects/${project.slug}`}
               className="
