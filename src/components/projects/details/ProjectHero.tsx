@@ -8,7 +8,7 @@ import ProjectPreview from "@/components/projects/ProjectPreview";
 interface Props { project: Project; }
 
 function hasCustomPreview(slug: string) {
-  return slug === "utech-store" || slug === "utech-learning-hub";
+  return slug === "utech-learning-hub";
 }
 
 export default function ProjectHero({ project }: Props) {
@@ -20,7 +20,7 @@ export default function ProjectHero({ project }: Props) {
       <div className="overflow-hidden rounded-[2rem] border border-white/10 bg-white/[0.035] shadow-2xl shadow-black/30">
         <div className="relative aspect-[16/8] overflow-hidden border-b border-white/10 bg-[#050a14]">
           {hasCustomPreview(project.slug) ? (
-            <ProjectPreview variant={project.slug === "utech-store" ? "store" : "learning"} />
+            <ProjectPreview variant="learning" />
           ) : (
             <>
               <Image src={project.image} alt={project.title + " project preview"} fill priority sizes="(max-width: 1280px) 100vw, 1152px" className="object-cover" />
