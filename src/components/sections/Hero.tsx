@@ -48,6 +48,12 @@ export default function Hero() {
             >
               Download CV
             </a>
+            <a
+              href="#contact"
+              className="inline-flex items-center justify-center rounded-xl border border-blue-400/15 bg-blue-400/[0.04] px-7 py-3.5 font-semibold text-blue-200 transition duration-300 hover:-translate-y-0.5 hover:border-blue-400/30 hover:bg-blue-400/10 hover:text-white"
+            >
+              Start a conversation <span className="ml-2">→</span>
+            </a>
           </div>
 
           <div className="mt-9 flex flex-wrap justify-center gap-x-6 gap-y-2 text-xs text-gray-500 lg:justify-start">
