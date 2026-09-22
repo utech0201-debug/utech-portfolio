@@ -14,13 +14,8 @@ interface Props {
 }
 
 export default function ProjectCard({ project }: Props) {
-  const isUtechBuild = project.id >= 4;
-  const previewVariant =
-    project.slug === "utech-store"
-      ? "store"
-      : project.slug === "utech-learning-hub"
-        ? "learning"
-        : null;
+  const isUtechBuild = project.slug === "utech-learning-hub";
+  const previewVariant = project.slug === "utech-learning-hub" ? "learning" : null;
 
   return (
     <motion.div

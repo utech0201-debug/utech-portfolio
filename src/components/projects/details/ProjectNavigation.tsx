@@ -8,7 +8,7 @@ interface Props {
 }
 
 function isLiveProject(slug: string) {
-  return slug === "utech-store" || slug === "utech-learning-hub";
+  return slug === "utech-learning-hub" || slug === "utech-portfolio";
 }
 
 export default function ProjectNavigation({ currentSlug }: Props) {

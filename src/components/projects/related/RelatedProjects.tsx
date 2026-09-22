@@ -11,23 +11,15 @@ interface Props {
 }
 
 const relatedProjectMap: Record<string, string[]> = {
-  "utech-store": [
-    "utech-learning-hub",
-    "utech-portfolio",
-    "online-banking-management-system",
-  ],
   "utech-learning-hub": [
     "cybersecurity-labs",
-    "utech-store",
     "utech-portfolio",
   ],
   "online-banking-management-system": [
     "utech-portfolio",
-    "utech-store",
     "cybersecurity-labs",
   ],
   "utech-portfolio": [
-    "utech-store",
     "utech-learning-hub",
     "online-banking-management-system",
   ],
@@ -41,8 +33,7 @@ const relatedProjectMap: Record<string, string[]> = {
 function isLiveProject(project: (typeof projects)[number]) {
   return Boolean(
     project.demo &&
-      (project.slug === "utech-store" ||
-        project.slug === "utech-learning-hub" ||
+      (project.slug === "utech-learning-hub" ||
         project.slug === "utech-portfolio")
   );
 }
