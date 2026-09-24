@@ -1,10 +1,16 @@
-import { GraduationCap, ShieldCheck, Code2, Rocket } from "lucide-react";
+import { GraduationCap, ShieldCheck, Code2, Rocket, Terminal, Network } from "lucide-react";
 
 const stats = [
   { title: "Projects", value: "15+", icon: Rocket },
   { title: "Technologies", value: "20+", icon: Code2 },
   { title: "Security Labs", value: "10+", icon: ShieldCheck },
   { title: "Learning", value: "Daily", icon: GraduationCap },
+];
+
+const focusAreas = [
+  { label: "Build", value: "Full-Stack Apps", icon: Terminal },
+  { label: "Secure", value: "Systems & APIs", icon: ShieldCheck },
+  { label: "Explore", value: "Networks & Linux", icon: Network },
 ];
 
 export default function About() {
@@ -31,7 +37,27 @@ export default function About() {
         </p>
       </div>
 
-      <div className="mt-14 grid gap-8 lg:grid-cols-[1.15fr_.85fr]">
+      <div className="mt-12 grid gap-4 md:grid-cols-3">
+        {focusAreas.map((item) => {
+          const Icon = item.icon;
+          return (
+            <article
+              key={item.label}
+              className="glass-card flex items-center gap-4 p-5 transition duration-300 hover:-translate-y-1 hover:border-blue-400/30"
+            >
+              <div className="flex h-11 w-11 shrink-0 items-center justify-center rounded-xl border border-blue-400/20 bg-blue-400/10">
+                <Icon className="text-blue-300" size={20} />
+              </div>
+              <div>
+                <p className="font-mono text-[10px] uppercase tracking-[0.2em] text-gray-500">{item.label}</p>
+                <p className="mt-1 font-semibold text-white">{item.value}</p>
+              </div>
+            </article>
+          );
+        })}
+      </div>
+
+      <div className="mt-10 grid gap-8 lg:grid-cols-[1.15fr_.85fr]">
         <article className="glass-card group p-8 sm:p-10">
           <div className="flex items-center gap-3">
             <span className="status-dot" />
