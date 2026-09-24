@@ -5,7 +5,7 @@ import ProfileCard from "./ProfileCard";
 
 export default function Hero() {
   return (
-    <section className="relative flex min-h-screen items-center justify-center overflow-hidden px-6 pb-16 pt-28 sm:pt-32 lg:pt-20">
+    <section id="home" className="relative flex min-h-screen items-center justify-center overflow-hidden px-6 pb-16 pt-28 sm:pt-32 lg:pt-20">
       <div className="absolute left-1/2 top-1/2 h-72 w-72 -translate-x-1/2 -translate-y-1/2 rounded-full bg-blue-500/10 blur-[120px]" />
 
       <div className="relative mx-auto grid w-full max-w-7xl items-center gap-14 lg:grid-cols-[1.08fr_.92fr] lg:gap-16">
