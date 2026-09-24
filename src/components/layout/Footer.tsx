@@ -35,7 +35,7 @@ export default function Footer() {
       </div>
       <div className="flex flex-col gap-3 border-t border-white/10 px-6 py-5 text-center text-xs text-gray-600 sm:flex-row sm:items-center sm:justify-between sm:text-left">
         <span>© {new Date().getFullYear()} Utech. Built with Next.js & Tailwind CSS.</span>
-        <a href="#" className="text-gray-500 transition hover:text-white">Back to top ↑</a>
+        <a href="#home" className="text-gray-500 transition hover:text-white">Back to top ↑</a>
       </div>
     </footer>
   );
