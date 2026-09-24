@@ -53,7 +53,10 @@ export default function Contact() {
         viewport={{ once: true }}
         className="rounded-3xl border border-white/10 bg-white/5 p-8 backdrop-blur-xl md:p-10"
       >
-        <p className="font-semibold uppercase text-blue-500">Contact</p>
+        <div className="flex flex-wrap items-center justify-between gap-4">
+          <p className="section-kicker">Let&apos;s connect</p>
+          <span className="rounded-full border border-emerald-400/15 bg-emerald-400/5 px-3 py-1.5 font-mono text-[10px] uppercase tracking-[0.18em] text-emerald-300">Open to opportunities</span>
+        </div>
 
         <h2 className="mt-4 text-3xl font-bold md:text-4xl">
           Let&apos;s build something amazing
@@ -63,6 +66,21 @@ export default function Contact() {
           I&apos;m open to internships, freelance projects, collaborations,
           and opportunities where I can build impactful software.
         </p>
+
+        <div className="mx-auto mt-8 grid max-w-xl gap-3 sm:grid-cols-3">
+          <div className="rounded-xl border border-white/10 bg-black/20 px-4 py-3 text-center">
+            <p className="text-xs uppercase tracking-wider text-gray-600">Focus</p>
+            <p className="mt-1 text-sm font-semibold text-gray-200">Full-Stack</p>
+          </div>
+          <div className="rounded-xl border border-white/10 bg-black/20 px-4 py-3 text-center">
+            <p className="text-xs uppercase tracking-wider text-gray-600">Interest</p>
+            <p className="mt-1 text-sm font-semibold text-gray-200">Cybersecurity</p>
+          </div>
+          <div className="rounded-xl border border-white/10 bg-black/20 px-4 py-3 text-center">
+            <p className="text-xs uppercase tracking-wider text-gray-600">Based in</p>
+            <p className="mt-1 text-sm font-semibold text-gray-200">Ghana</p>
+          </div>
+        </div>
 
         <form onSubmit={handleSubmit} className="mx-auto mt-10 max-w-xl space-y-5">
           <label className="sr-only" htmlFor="contact-name">Your name</label>
